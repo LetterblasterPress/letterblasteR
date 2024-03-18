@@ -8,6 +8,15 @@
 \description{
 The letterblasteR package provides tools for proofreading public domain texts from Project Gutenberg and typesetting print-ready books.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/LetterblasterPress/letterblasteR}
+  \item \url{https://letterblasterpress.github.io/letterblasteR/}
+  \item Report bugs at \url{https://github.com/LetterblasterPress/letterblasteR/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Justin Brantley \email{fascinatingfingers@icloud.com}
 

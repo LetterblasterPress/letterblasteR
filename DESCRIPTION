@@ -7,6 +7,9 @@ Description: The letterblasteR package provides tools for proofreading
     public domain texts from Project Gutenberg and typesetting print-ready
     books.
 License: GPL (>= 3)
+URL: https://github.com/LetterblasterPress/letterblasteR,
+    https://letterblasterpress.github.io/letterblasteR/
+BugReports: https://github.com/LetterblasterPress/letterblasteR/issues
 Imports: 
     tibble
 Suggests: 
