@@ -1,7 +1,4 @@
-## inst ########################################################################
-
-context("inst()")
-test_that("it returns the expected path or an empty string", {
+test_that("inst() returns the expected path or an empty string", {
   expect_identical(
     inst("foo", "bar"),
     ""

@@ -6,6 +6,8 @@
 \alias{letterblasteR-package}
 \title{letterblasteR: Utilities for Proofreading and Typesetting Books}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 The letterblasteR package provides tools for proofreading public domain texts from Project Gutenberg and typesetting print-ready books.
 }
 \seealso{

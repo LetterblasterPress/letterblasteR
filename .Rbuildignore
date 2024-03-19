@@ -1,8 +1,16 @@
-^letterblasteR\.Rproj$
-^\.Rproj\.user$
-^LICENSE\.md$
+.DS_Store
+.httr-oauth
+.quarto
+.Rdata
+.Rhistory
+.Rproj.user
+docs
+> readLines(".Rbuildignore") |> sort() |> unique() |> paste(collapse = "\n") |> message()
 ^_pkgdown\.yml$
-^docs$
-^pkgdown$
 ^\.github$
+^\.Rproj\.user$
 ^codecov\.yml$
+^docs$
+^letterblasteR\.Rproj$
+^LICENSE\.md$
+^pkgdown$
