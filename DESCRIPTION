@@ -11,10 +11,23 @@ URL: https://github.com/LetterblasterPress/letterblasteR,
     https://letterblasterpress.github.io/letterblasteR/
 BugReports: https://github.com/LetterblasterPress/letterblasteR/issues
 Imports: 
-    tibble
+    covr,
+    devtools,
+    fs,
+    magrittr,
+    pkgdown,
+    rstudioapi,
+    styler,
+    tibble,
+    usethis,
+    utils,
+    yaml
 Suggests: 
+    mockery,
     spelling,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    uuid,
+    withr
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
