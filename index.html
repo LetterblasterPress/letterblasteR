@@ -9,6 +9,12 @@
     public domain texts from Project Gutenberg and typesetting print-ready
     books.">
 <title>Utilities for Proofreading and Typesetting Books • letterblasteR</title>
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -17,6 +23,7 @@
 <meta property="og:description" content="The letterblasteR package provides tools for proofreading
     public domain texts from Project Gutenberg and typesetting print-ready
     books.">
+<meta property="og:image" content="https://letterblasterpress.github.io/letterblasteR/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -62,22 +69,79 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="letterblaster">letterblasteR<a class="anchor" aria-label="anchor" href="#letterblaster"></a>
-</h1></div>
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="letterblaster-">letterblasteR 
+<a class="anchor" aria-label="anchor" href="#letterblaster-"></a>
+</h1>
+</div>
 <!-- badges: start -->
 
-<p>The goal of letterblasteR is to …</p>
+<!-- badges: end -->
+<p>The goal of letterblasteR is to facilitate typesetting ready-to-print editions of public domain texts. The templates and utility functions provided by letterblasteR are generic and modular enough to be used in any way you see fit, but they have been designed with the following workflow in mind.</p>
+<ol style="list-style-type: decimal">
+<li><p>Online repositories like the <a href="https://archive.org" class="external-link">Internet Archive</a> and <a href="https://books.google.com" class="external-link">Google Books</a> host scans of physical book pages as well as optical character recognition (OCR) data for each page.</p></li>
+<li><p>As works enter the public domain in the United States, <a href="https://www.pgdp.net" class="external-link">Distributed Proofreaders</a> volunteers proofread the text multiple times to correct scanning errors and standardize basic formatting.</p></li>
+<li>
+<p><a href="https://www.gutenberg.org" class="external-link">Project Gutenberg</a> volunteers convert proofread public domain works into standard formats (e.g. plain text, HTML, epub).</p>
+<p><em>At this stage, the text has usually undergone several rounds of proofreading by multiple people. Generally, texts accurately represent the source material and are free of scanning errors and typos. However, headings, tables, figures, and other elements require additional markup before typesetting the work for print. This is where</em> letterblasteR <em>comes in!</em></p>
+</li>
+<li>
+<p>Details are subject to change while letterblasteR is under early development, but the general idea is that a volunteer…</p>
+<ul>
+<li>Selects a Project Gutenberg work to convert and requests the creation of a new <a href="https://github.com/LetterblasterPress" class="external-link">Letterblaster Press</a> repository for the project.</li>
+<li>Uses letterblasteR templates and utilities to combine multiple versions of the work (e.g. HTML, epub; different editions) into a single source document formatted in <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" class="external-link">Pandoc’s Markdown</a>. This ensures that all available markup (e.g. emphasized text) appears in the final text.</li>
+<li>Adds, edits, and standardizes semantic markup for headings, tables, figures, inline formatting, and special environments like poetry, letters, &amp; mathematics. This is a manual and iterative process, but letterblasteR templates and utilities help streamline the process.</li>
+<li>Extends letterblasteR templates to define the structure and formatting of the finished book(s).</li>
+<li>Renders PDF(s) and uses letterblasteR utilities to <a href="https://en.wikipedia.org/wiki/Imposition" class="external-link">impose</a> ready-to-print versions of each PDF.</li>
+</ul>
+</li>
+</ol>
+<div class="section level2">
+<h2 id="guiding-principles">Guiding principles<a class="anchor" aria-label="anchor" href="#guiding-principles"></a>
+</h2>
+<p>The following principles will guide early design decisions as this project gets off the ground:</p>
+<ul>
+<li>
+<p>Objective: produce ready-to-print PDFs of public domain works with the amateur bookbinder in mind</p>
+<ul>
+<li><p>One work can have many designs, each with its own physical dimensions, formatting, and style. Provide a page-level (no imposition) PDF for each design. Use vdiff tools to proofread every two-page spread of the design PDF.</p></li>
+<li><p>Each design can have many imposed PDFs to accommodate different paper stock sizes. Generally, the amateur bookbinder requires imposed PDFs for stock sizes of roughly A3–A4. Imposed PDFs should note ideal grain direction, providing options for short- and long-grain paper if possible. Signature sizes should be optimized for each imposition.</p></li>
+<li>
+<p>Design PDFs for printing.</p>
+<ul>
+<li><p>Forgo markup intended for electronic formats such as hyperlinks and screen reader hints; disable PDF features to reduce bloat. (For example, marking “Mr.” as an abbreviation is useful for a screen-reader, but serves no purpose in print. However, marking up “NASA” as an acronym or “FBI” as an initialism is desired because they may require special typesetting like small caps.)</p></li>
+<li><p>Use embedable fonts and embed them into PDFs. Do not add fonts to source control.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Use <a href="https://pandoc.org/MANUAL.html#pandocs-markdown" class="external-link">Pandoc’s Markdown</a> as the source of truth. Favor semantic markup over formatting markup.</p>
+<ul>
+<li><p>If it can be represented using Pandoc’s Markdown, do so.</p></li>
+<li><p>Otherwise, wrap the semantic element in a <a href="https://pandoc.org/MANUAL.html#extension-fenced_divs" class="external-link">fenced div</a> or <a href="https://pandoc.org/MANUAL.html#extension-bracketed_spans" class="external-link">bracketed span</a> and use a <a href="https://pandoc.org/filters.html" class="external-link">Pandoc filter</a> to wrap the element in a custom LaTeX environment or pass the element to a custom LaTeX function, respectively.</p></li>
+<li><p>Otherwise, consider using <a href="https://pandoc.org/MANUAL.html#templates" class="external-link">Pandoc template partials</a>. For example, a book with a complex chapter page containing pre-title text, a title, subtitle, epigraph, and image could be broken into chapter-level files, each with a yaml metadata block containing the aforementioned elements. A root template would then include each chapter file, rendering it with a partial template that takes care of typesetting each complex chapter page.</p></li>
+<li><p>As a last resort – and let’s really try to avoid this – a raw LaTeX chunk can be used as long as there is a corresponding non-LaTeX chunk to use as a fallback in the event that our source markdown files are rendered to another format.</p></li>
+<li><p>The ideal markdown document is free of external markup (HTML, LaTeX, etc.), free of formatting markup (e.g. small caps), and limited to UTF-8 text and semantic markup (e.g. letter environment, acronym). All formatting details are factored out into Pandoc template(s) for each design. letterblasteR should provide generators to customize boilerplate templates for common patterns.</p></li>
+</ul>
+</li>
+<li><p>Aim to produce a professional-quality typeset. Use the most advanced fonts and typographic features available, and get fussy with hyphenation.</p></li>
+<li><p>Let The Elements of Typographic Style and The Visual Display of Quantitative Information guide design decisions. Design decisions should honor the original work and the era in which it was produced, but favor good typography over precise historical accuracy or facsimile of the original work. Allow typesetting software to alter and fine-tune spacing, but otherwise honor archaic punctuation, spelling, and formatting.</p></li>
+<li><p>Report text errors back to the source (<a href="https://www.pgdp.net" class="external-link">Distributed Proofreaders</a>, <a href="https://www.gutenberg.org" class="external-link">Project Gutenberg</a>, etc.).</p></li>
+<li><p>Follow conventions of reproducible research so that new versions can be recompiled with minimal effort. Capture common transformations in modular semantic functions (e.g. <code>drop_div(".book-metadata")</code>, <code>drop_null_anchors()</code>). Create custom Pandoc filters, and use them liberally before checking in new source to avoid massive diffs for inconsequential differences like spacing and word wrapping.</p></li>
+</ul>
+</div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>You can install the development version of letterblasteR like so:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"LetterblasterPress/letterblasteR"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<p>Coming soon…</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/LetterblasterPress/letterblasteR" class="external-link">letterblasteR</a></span><span class="op">)</span></span>
 <span><span class="co">## basic example code</span></span></code></pre></div>
