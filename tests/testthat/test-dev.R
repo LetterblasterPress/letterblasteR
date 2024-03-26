@@ -28,14 +28,11 @@ test_that("inst() returns the expected path or an empty string", {
 test_that("dev() returns TRUE if both `usethis` calls are successful", {
   mock_use_r <- mock(TRUE)
   stub(dev, "usethis::use_r", mock_use_r)
-  mock_use_test <- mock("path")
+  mock_use_test <- mock(TRUE)
   stub(dev, "usethis::use_test", mock_use_test)
-  mock_file_exists <- mock(TRUE)
-  stub(dev, "file_exists", mock_file_exists)
   expect_true(dev("foo"))
   expect_called(mock_use_r, 1)
   expect_called(mock_use_test, 1)
-  expect_args(mock_file_exists, 1, "path")
 })
 
 ## dev() - F-
@@ -53,14 +50,11 @@ test_that("dev() returns FALSE if the first `usethis` call fails", {
 test_that("dev() returns FALSE if the second `usethis` call fails", {
   mock_use_r <- mock(TRUE)
   stub(dev, "usethis::use_r", mock_use_r)
-  mock_use_test <- mock("path")
+  mock_use_test <- mock(FALSE)
   stub(dev, "usethis::use_test", mock_use_test)
-  mock_file_exists <- mock(FALSE)
-  stub(dev, "file_exists", mock_file_exists)
   expect_false(dev("foo"))
   expect_called(mock_use_r, 1)
   expect_called(mock_use_test, 1)
-  expect_args(mock_file_exists, 1, "path")
 })
 
 ## dev_lint ################################################################

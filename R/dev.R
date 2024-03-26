@@ -27,10 +27,7 @@ inst <- function(...) {
 #'
 #' @return Returns `TRUE` invisibly upon success.
 dev <- function(name) {
-  invisible(
-    usethis::use_r(name) &&
-      file_exists(usethis::use_test(name))
-  )
+  invisible(usethis::use_r(name) && usethis::use_test(name))
 }
 
 #' Run code quality checks (internal function)
