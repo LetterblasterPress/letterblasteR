@@ -15,12 +15,16 @@ Depends:
 Imports: 
     covr,
     devtools,
+    dplyr,
     fs,
     magrittr,
     pkgdown,
+    purrr,
+    rdflib,
     rstudioapi,
     styler,
     tibble,
+    tidyr,
     usethis,
     utils,
     yaml
