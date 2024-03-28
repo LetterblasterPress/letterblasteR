@@ -2,6 +2,8 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#' @importFrom cli ansi_html
+#' @importFrom cli ansi_html_style
 #' @importFrom covr coverage_to_list
 #' @importFrom covr file_report
 #' @importFrom covr package_coverage
@@ -25,7 +27,12 @@
 #' @importFrom gert git_add
 #' @importFrom gert git_commit
 #' @importFrom gert git_init
+#' @importFrom htmltools HTML
+#' @importFrom htmltools html_print
+#' @importFrom htmltools tagList
+#' @importFrom htmltools tags
 #' @importFrom magrittr %<>%
+#' @importFrom methods is
 #' @importFrom pkgdown build_site
 #' @importFrom purrr map_chr
 #' @importFrom purrr map_dbl

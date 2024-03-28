@@ -134,6 +134,7 @@ dev_check <- function() {
 #' @return Each function returns `TRUE` invisibly upon success.
 #'
 #' @name dev_check_helpers
+NULL
 
 #' @rdname dev_check_helpers
 dev_lint <- function() {

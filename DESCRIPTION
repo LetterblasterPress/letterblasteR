@@ -13,12 +13,15 @@ BugReports: https://github.com/LetterblasterPress/letterblasteR/issues
 Depends:
     R (>= 4.1)
 Imports: 
+    cli,
     covr,
     devtools,
     dplyr,
     fs,
     gert,
+    htmltools,
     magrittr,
+    methods,
     pkgdown,
     purrr,
     rdflib,
