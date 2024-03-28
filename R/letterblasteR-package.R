@@ -23,7 +23,6 @@
 #' @importFrom fs file_move
 #' @importFrom fs file_temp
 #' @importFrom fs path
-#' @importFrom fs path_temp
 #' @importFrom gert git_add
 #' @importFrom gert git_commit
 #' @importFrom gert git_init

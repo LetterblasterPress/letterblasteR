@@ -16,7 +16,7 @@
 #'   paste(collapse = "\n") |>
 #'   write("")
 diff_text <- function(a, b) {
-  tmp_dir <- dir_create(path_temp("git"))
+  tmp_dir <- dir_create(file_temp("git"))
   tmp_pth <- path(tmp_dir, "file")
   on.exit(unlink(tmp_dir, recursive = TRUE))
 
