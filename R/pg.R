@@ -128,7 +128,7 @@ pg_download_text <- function(url, zip = FALSE, encoding = "UTF-8") {
     stopifnot(length(tmp_pth) == 1L)
   }
 
-  con <- file(tmp_pth, encoding = encoding)
+  con <- file(tmp_pth, encoding = match.arg(toupper(encoding), iconvlist()))
   on.exit(close(con), add = TRUE, after = FALSE)
   iconv(readLines(con), to = "UTF-8")
 }
@@ -153,7 +153,7 @@ pg_download_html <- function(url, zip = FALSE, encoding = "UTF-8", image_dir) {
     }
   }
 
-  con <- file(tmp_pth, encoding = encoding)
+  con <- file(tmp_pth, encoding = match.arg(toupper(encoding), iconvlist()))
   on.exit(close(con), add = TRUE, after = FALSE)
   iconv(readLines(con), to = "UTF-8")
 }
