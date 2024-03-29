@@ -105,6 +105,7 @@ pg_files <- function(x) {
 #' @param url URL for Project Gutenberg file
 #' @param zip logical indicating if file is zipped
 #' @param encoding assumed encoding of source file
+#' @param image_dir path to copy accompanying image files to
 #'
 #' @return Returns content as a UTF-encoded character vector.
 #'
@@ -134,7 +135,7 @@ pg_download_text <- function(url, zip = FALSE, encoding = "UTF-8") {
 
 #' @rdname pg_download
 #' @export
-pg_download_html <- function(url, zip = FALSE, encoding = "UTF-8") {
+pg_download_html <- function(url, zip = FALSE, encoding = "UTF-8", image_dir) {
   tmp_dir <- dir_create(file_temp("html"))
   tmp_pth <- path(tmp_dir, "html", ext = ifelse(zip, "zip", "html"))
   on.exit(unlink(tmp_dir, recursive = TRUE))
@@ -147,7 +148,9 @@ pg_download_html <- function(url, zip = FALSE, encoding = "UTF-8") {
     tmp_pth <- dir_ls(tmp_dir, type = "file")
     stopifnot(length(tmp_pth) == 1L)
 
-    # TODO copy images dir
+    if (hasArg(image_dir) && dir_exists(path(tmp_dir, "images"))) {
+      dir_copy(path(tmp_dir, "images"), dir_create(image_dir))
+    }
   }
 
   con <- file(tmp_pth, encoding = encoding)

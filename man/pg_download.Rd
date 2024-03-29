@@ -8,7 +8,7 @@
 \usage{
 pg_download_text(url, zip = FALSE, encoding = "UTF-8")
 
-pg_download_html(url, zip = FALSE, encoding = "UTF-8")
+pg_download_html(url, zip = FALSE, encoding = "UTF-8", image_dir)
 }
 \arguments{
 \item{url}{URL for Project Gutenberg file}
@@ -16,6 +16,8 @@ pg_download_html(url, zip = FALSE, encoding = "UTF-8")
 \item{zip}{logical indicating if file is zipped}
 
 \item{encoding}{assumed encoding of source file}
+
+\item{image_dir}{path to copy accompanying image files to}
 }
 \value{
 Returns content as a UTF-encoded character vector.

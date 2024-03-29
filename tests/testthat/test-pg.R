@@ -1,5 +1,35 @@
 library(mockery)
 
+generate_mock_pg_download <- function(enc = "UTF-8", zip = FALSE, img = FALSE) {
+  enc <- match.arg(toupper(enc), iconvlist())
+
+  # generate mock content
+  x <- letters
+  Encoding(x) <- enc
+
+  # write mock content
+  tmp_dir <- dir_create(file_temp("mock_pg_download-"))
+  f <- path(tmp_dir, "index")
+  con <- file(f, encoding = enc)
+  writeLines(x, con)
+  close(con)
+
+  # add images
+  if (img) {
+    img_dir <- dir_create(path(tmp_dir, "images"))
+    write("image 1", path(img_dir, "img1"))
+  }
+
+  # compress
+  if (zip) {
+    f <- fs::path_ext_set(f, "zip")
+
+    with_dir(tmp_dir, zip(f, dir_ls(recurse = TRUE)))
+  }
+
+  return(f)
+}
+
 ## pg_metadata #################################################################
 
 test_that("pg_metadata() returns errors for invalid inputs", {
@@ -94,91 +124,43 @@ test_that("pg_files() filters and aggregates metadata about each available file"
   expect_identical(pg_files(x), y)
 })
 
-## pg_download_text ############################################################
+## pg_download_* ###############################################################
 
-test_that("pg_download_text() processes (possibly zipped) text in various encodings", {
-  # write test files to a temp dir
-  tmp_dir <- dir_create(file_temp("pg_text"))
-  on.exit(unlink(tmp_dir, recursive = TRUE))
+test_that("pg_download_text() and pg_download_html() processes (possibly zipped) content in various encodings, with and without images", {
+  mocks <- tidyr::expand_grid(
+    enc = c("US-ASCII", "ISO_8859-1", "UTF-8"),
+    zip = c(FALSE, TRUE),
+    img = c(FALSE, TRUE)
+  )
+  mocks$url <- purrr::pmap_chr(mocks, generate_mock_pg_download)
+  on.exit(unlink(fs::path_dir(mocks$url), recursive = TRUE))
 
-  c("US-ASCII", "ISO_8859-1", "UTF-8") |>
-    purrr::map_lgl(function(enc) {
-      x <- letters
-      Encoding(x) <- enc
+  purrr::pmap(mocks, function(enc, zip, img, url) {
+    img_dir <- file_temp("images-")
+    on.exit(unlink(img_dir, recursive = TRUE))
 
-      f <- path(tmp_dir, enc)
-      f_zip <- fs::path_ext_set(f, "zip")
+    stub(pg_download_text, "download.file", fs::file_copy)
+    stub(pg_download_html, "download.file", fs::file_copy)
 
-      con <- file(f, encoding = enc)
-      writeLines(x, con)
-      close(con)
+    txt <- pg_download_text(url = url, zip = zip, encoding = enc)
+    expect_type(txt, "character")
+    expect_identical(txt, letters)
+    expect_true(all(Encoding(txt) %in% c("unknown", "UTF-8")))
+    rm(txt)
 
-      with_dir(fs::path_dir(f), zip(f_zip, fs::path_file(f)))
+    htm <- pg_download_html(url = url, zip = zip, encoding = enc, image_dir = img_dir)
+    expect_type(htm, "character")
+    expect_identical(htm, letters)
+    expect_true(all(Encoding(htm) %in% c("unknown", "UTF-8")))
+    rm(htm)
 
-      return(file_exists(f) & file_exists(f_zip))
-    }) |>
-    all() |>
-    stopifnot()
+    if (zip & img) {
+      expect_true(dir_exists(img_dir))
+      expect_true(fs::file_exists(path(img_dir, "images", "img1")))
+    } else {
+      expect_false(dir_exists(img_dir))
+    }
 
-  # read each test file with pg_download_txt
-  stub(pg_download_text, "download.file", fs::file_copy)
-
-  y <- tibble(
-    url = dir_ls(tmp_dir),
-    zip = grepl("\\.zip$", url),
-    encoding = fs::path_ext_remove(fs::path_file(url))
-  ) |>
-    purrr::pmap(pg_download_text)
-
-  expect_length(y, 6)
-  expect_true(all(purrr::map_lgl(y, ~ class(.) == "character")))
-  expect_true(all(purrr::map_lgl(y, ~ identical(., letters))))
-  expect_true(all(purrr::map_lgl(y, ~ all(Encoding(.) %in% c("unknown", "UTF-8")))))
-})
-
-## pg_download_html ############################################################
-
-test_that("pg_download_html() processes (possibly zipped) html in various encodings", {
-  # write test files to a temp dir
-  tmp_dir <- dir_create(file_temp("pg_html"))
-  on.exit(unlink(tmp_dir, recursive = TRUE))
-
-  c("US-ASCII", "ISO_8859-1", "UTF-8") |>
-    purrr::map_lgl(function(enc) {
-      x <- letters
-      Encoding(x) <- enc
-
-      d <- dir_create(path(tmp_dir, enc))
-      dir_create(path(d, "images"))
-      f <- path(d, enc)
-      f_zip <- fs::path_ext_set(f, "zip")
-
-      write("img1", path(d, "images", "img1"))
-      con <- file(f, encoding = enc)
-      writeLines(x, con)
-      close(con)
-
-      with_dir(d, zip(f_zip, dir_ls(recurse = TRUE)))
-
-      return(file_exists(f) & file_exists(f_zip))
-    }) |>
-    all() |>
-    stopifnot()
-
-  # read each test file with pg_download_txt
-  stub(pg_download_html, "download.file", fs::file_copy)
-
-  y <- tibble(
-    url = dir_ls(tmp_dir, type = "directory") |>
-      purrr::map(dir_ls, type = "file") |>
-      unlist(use.names = FALSE),
-    zip = grepl("\\.zip$", url),
-    encoding = fs::path_ext_remove(fs::path_file(url))
-  ) |>
-    purrr::pmap(pg_download_html)
-
-  expect_length(y, 6)
-  expect_true(all(purrr::map_lgl(y, ~ class(.) == "character")))
-  expect_true(all(purrr::map_lgl(y, ~ identical(., letters))))
-  expect_true(all(purrr::map_lgl(y, ~ all(Encoding(.) %in% c("unknown", "UTF-8")))))
+    return(invisible(NULL))
+  })
 })
