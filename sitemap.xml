@@ -31,6 +31,12 @@
     <loc>https://letterblasterpress.github.io/letterblasteR/reference/dev_check_helpers.html</loc>
   </url>
   <url>
+    <loc>https://letterblasterpress.github.io/letterblasteR/reference/diff_helpers.html</loc>
+  </url>
+  <url>
+    <loc>https://letterblasterpress.github.io/letterblasteR/reference/diff_text.html</loc>
+  </url>
+  <url>
     <loc>https://letterblasterpress.github.io/letterblasteR/reference/index.html</loc>
   </url>
   <url>
@@ -38,5 +44,14 @@
   </url>
   <url>
     <loc>https://letterblasterpress.github.io/letterblasteR/reference/letterblasteR-package.html</loc>
+  </url>
+  <url>
+    <loc>https://letterblasterpress.github.io/letterblasteR/reference/pg_download.html</loc>
+  </url>
+  <url>
+    <loc>https://letterblasterpress.github.io/letterblasteR/reference/pg_files.html</loc>
+  </url>
+  <url>
+    <loc>https://letterblasterpress.github.io/letterblasteR/reference/pg_metadata.html</loc>
   </url>
 </urlset>
