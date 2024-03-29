@@ -21,10 +21,12 @@ diff_text <- function(a, b) {
   on.exit(unlink(tmp_dir, recursive = TRUE))
 
   git_init(tmp_dir)
+  git_config_set("user.name", "letterblasteR", repo = tmp_dir)
+  git_config_set("user.email", "letterblasteR", repo = tmp_dir)
 
   write(a, tmp_pth)
-  git_add("file", repo = tmp_pth)
-  git_commit("a", repo = tmp_pth)
+  git_add("file", repo = tmp_dir)
+  git_commit("a", repo = tmp_dir)
   write(b, tmp_pth)
 
   patch <- with_dir(

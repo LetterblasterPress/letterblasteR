@@ -26,6 +26,7 @@
 #' @importFrom fs path_temp
 #' @importFrom gert git_add
 #' @importFrom gert git_commit
+#' @importFrom gert git_config_set
 #' @importFrom gert git_init
 #' @importFrom htmltools HTML
 #' @importFrom htmltools html_print
