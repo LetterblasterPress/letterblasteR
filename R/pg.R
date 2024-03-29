@@ -121,9 +121,9 @@ pg_download_text <- function(url, zip = FALSE, encoding = "UTF-8") {
   download.file(url, tmp_pth)
 
   if (zip) {
-    unzip(tmp_pth, exdir = tmp_dir, junkpaths = TRUE)
+    unzip(tmp_pth, exdir = tmp_dir)
     unlink(tmp_pth)
-    tmp_pth <- dir_ls(tmp_dir, type = "file", all = TRUE)
+    tmp_pth <- dir_ls(tmp_dir, type = "file")
     stopifnot(length(tmp_pth) == 1L)
   }
 
@@ -142,9 +142,9 @@ pg_download_html <- function(url, zip = FALSE, encoding = "UTF-8") {
   download.file(url, tmp_pth)
 
   if (zip) {
-    unzip(tmp_pth, exdir = tmp_dir, junkpaths = TRUE)
+    unzip(tmp_pth, exdir = tmp_dir)
     unlink(tmp_pth)
-    tmp_pth <- dir_ls(tmp_dir, type = "file", all = TRUE)
+    tmp_pth <- dir_ls(tmp_dir, type = "file")
     stopifnot(length(tmp_pth) == 1L)
 
     # TODO copy images dir

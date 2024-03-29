@@ -113,7 +113,7 @@ test_that("pg_download_text() processes (possibly zipped) text in various encodi
       writeLines(x, con)
       close(con)
 
-      zip(f_zip, f)
+      with_dir(fs::path_dir(f), zip(f_zip, fs::path_file(f)))
 
       return(file_exists(f) & file_exists(f_zip))
     }) |>
@@ -148,14 +148,17 @@ test_that("pg_download_html() processes (possibly zipped) html in various encodi
       x <- letters
       Encoding(x) <- enc
 
-      f <- path(tmp_dir, enc)
+      d <- dir_create(path(tmp_dir, enc))
+      dir_create(path(d, "images"))
+      f <- path(d, enc)
       f_zip <- fs::path_ext_set(f, "zip")
 
+      write("img1", path(d, "images", "img1"))
       con <- file(f, encoding = enc)
       writeLines(x, con)
       close(con)
 
-      zip(f_zip, f)
+      with_dir(d, zip(f_zip, dir_ls(recurse = TRUE)))
 
       return(file_exists(f) & file_exists(f_zip))
     }) |>
@@ -166,7 +169,9 @@ test_that("pg_download_html() processes (possibly zipped) html in various encodi
   stub(pg_download_html, "download.file", fs::file_copy)
 
   y <- tibble(
-    url = dir_ls(tmp_dir),
+    url = dir_ls(tmp_dir, type = "directory") |>
+      purrr::map(dir_ls, type = "file") |>
+      unlist(use.names = FALSE),
     zip = grepl("\\.zip$", url),
     encoding = fs::path_ext_remove(fs::path_file(url))
   ) |>
