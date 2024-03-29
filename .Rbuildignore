@@ -6,7 +6,6 @@
 .Rproj.user
 docs
 scratch
-> readLines(".Rbuildignore") |> sort() |> unique() |> paste(collapse = "\n") |> message()
 ^_pkgdown\.yml$
 ^\.github$
 ^\.Rproj\.user$
