@@ -3,6 +3,7 @@
 export(diff_css)
 export(diff_text)
 export(diff_to_html)
+export(pg_download_html)
 export(pg_download_text)
 export(pg_files)
 export(pg_metadata)

@@ -114,17 +114,40 @@ NULL
 #' @rdname pg_download
 #' @export
 pg_download_text <- function(url, zip = FALSE, encoding = "UTF-8") {
-  tmp_dir <- dir_create(path_temp("txt"))
+  tmp_dir <- dir_create(file_temp("txt"))
   tmp_pth <- path(tmp_dir, "txt", ext = ifelse(zip, "zip", "txt"))
   on.exit(unlink(tmp_dir, recursive = TRUE))
 
   download.file(url, tmp_pth)
 
   if (zip) {
-    unzip(tmp_pth, exdir = tmp_dir)
+    unzip(tmp_pth, exdir = tmp_dir, junkpaths = TRUE)
     unlink(tmp_pth)
-    tmp_pth <- dir_ls(tmp_dir, type = "file", recurse = TRUE, all = TRUE)
+    tmp_pth <- dir_ls(tmp_dir, type = "file", all = TRUE)
     stopifnot(length(tmp_pth) == 1L)
+  }
+
+  con <- file(tmp_pth, encoding = encoding)
+  on.exit(close(con), add = TRUE, after = FALSE)
+  iconv(readLines(con), to = "UTF-8")
+}
+
+#' @rdname pg_download
+#' @export
+pg_download_html <- function(url, zip = FALSE, encoding = "UTF-8") {
+  tmp_dir <- dir_create(file_temp("html"))
+  tmp_pth <- path(tmp_dir, "html", ext = ifelse(zip, "zip", "html"))
+  on.exit(unlink(tmp_dir, recursive = TRUE))
+
+  download.file(url, tmp_pth)
+
+  if (zip) {
+    unzip(tmp_pth, exdir = tmp_dir, junkpaths = TRUE)
+    unlink(tmp_pth)
+    tmp_pth <- dir_ls(tmp_dir, type = "file", all = TRUE)
+    stopifnot(length(tmp_pth) == 1L)
+
+    # TODO copy images dir
   }
 
   con <- file(tmp_pth, encoding = encoding)

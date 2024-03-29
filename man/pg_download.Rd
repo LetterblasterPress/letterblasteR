@@ -3,9 +3,12 @@
 \name{pg_download}
 \alias{pg_download}
 \alias{pg_download_text}
+\alias{pg_download_html}
 \title{Download Project Gutenberg content}
 \usage{
 pg_download_text(url, zip = FALSE, encoding = "UTF-8")
+
+pg_download_html(url, zip = FALSE, encoding = "UTF-8")
 }
 \arguments{
 \item{url}{URL for Project Gutenberg file}
