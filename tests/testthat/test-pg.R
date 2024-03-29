@@ -93,3 +93,45 @@ test_that("pg_files() filters and aggregates metadata about each available file"
 
   expect_identical(pg_files(x), y)
 })
+
+## pg_download_text ############################################################
+
+test_that("pg_download_text() can download", {
+  # write test files to a temp dir
+  tmp_dir <- dir_create(file_temp("pg_text"))
+  on.exit(unlink(tmp_dir, recursive = TRUE))
+
+  c("US-ASCII", "ISO_8859-1", "UTF-8") |>
+    purrr::map_lgl(function(enc) {
+      x <- letters
+      Encoding(x) <- enc
+
+      f <- path(tmp_dir, enc)
+      f_zip <- fs::path_ext_set(f, "zip")
+
+      con <- file(f, encoding = enc)
+      writeLines(x, con)
+      close(con)
+
+      zip(f_zip, f)
+
+      return(file_exists(f) & file_exists(f_zip))
+    }) |>
+    all() |>
+    stopifnot()
+
+  # read each test file with pg_download_txt
+  stub(pg_download_text, "download.file", fs::file_copy)
+
+  y <- tibble(
+    url = dir_ls(tmp_dir),
+    zip = grepl("\\.zip$", url),
+    encoding = fs::path_ext_remove(fs::path_file(url))
+  ) |>
+    purrr::pmap(pg_download_text)
+
+  expect_length(y, 6)
+  expect_true(all(purrr::map_lgl(y, ~ class(.) == "character")))
+  expect_true(all(purrr::map_lgl(y, ~ identical(., letters))))
+  expect_true(all(purrr::map_lgl(y, ~ all(Encoding(.) %in% c("unknown", "UTF-8")))))
+})

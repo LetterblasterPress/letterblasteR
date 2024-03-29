@@ -96,3 +96,38 @@ pg_files <- function(x) {
 
   return(y)
 }
+
+#' Download Project Gutenberg content
+#'
+#' These functions download content from Project Gutenberg, tidying intermediate
+#' files along the way.
+#'
+#' @param url URL for Project Gutenberg file
+#' @param zip logical indicating if file is zipped
+#' @param encoding assumed encoding of source file
+#'
+#' @return Returns content as a UTF-encoded character vector.
+#'
+#' @name pg_download
+NULL
+
+#' @rdname pg_download
+#' @export
+pg_download_text <- function(url, zip = FALSE, encoding = "UTF-8") {
+  tmp_dir <- dir_create(path_temp("txt"))
+  tmp_pth <- path(tmp_dir, "txt", ext = ifelse(zip, "zip", "txt"))
+  on.exit(unlink(tmp_dir, recursive = TRUE))
+
+  download.file(url, tmp_pth)
+
+  if (zip) {
+    unzip(tmp_pth, exdir = tmp_dir)
+    unlink(tmp_pth)
+    tmp_pth <- dir_ls(tmp_dir, type = "file", recurse = TRUE, all = TRUE)
+    stopifnot(length(tmp_pth) == 1L)
+  }
+
+  con <- file(tmp_pth, encoding = encoding)
+  on.exit(close(con), add = TRUE, after = FALSE)
+  iconv(readLines(con), to = "UTF-8")
+}
