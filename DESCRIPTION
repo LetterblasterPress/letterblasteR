@@ -22,6 +22,7 @@ Imports:
     htmltools,
     magrittr,
     methods,
+    pandoc,
     pkgdown,
     purrr,
     rdflib,
@@ -36,6 +37,7 @@ Imports:
 Suggests: 
     mockery,
     spelling,
+    stringr,
     testthat (>= 3.0.0),
     uuid
 Config/testthat/edition: 3

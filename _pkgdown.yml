@@ -17,6 +17,7 @@ reference:
     contents:
       - diff_text
       - diff_helpers
+      - to_tidy_md
   - title: "Developer tools"
     desc: >
       The following functions are intended to streamline common tasks for
