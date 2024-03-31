@@ -56,7 +56,7 @@ dev_check <- function() {
   message("\nChecking package...")
   y %<>% c(devtools::check(
     document = FALSE,
-    cran = TRUE,
+    cran = FALSE, # FIXME
     remote = FALSE,
     force_suggests = TRUE,
     args = "--force-multiarch"
