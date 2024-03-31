@@ -145,11 +145,18 @@ pg_download_html <- function(url, zip = FALSE, encoding = "UTF-8", image_dir) {
   if (zip) {
     unzip(tmp_pth, exdir = tmp_dir)
     unlink(tmp_pth)
-    tmp_pth <- dir_ls(tmp_dir, type = "file")
+
+    tmp_pth <- tmp_dir |>
+      dir_ls(recurse = TRUE, type = "file", regexp = "\\.html?$")
+    img_pth <- tmp_dir |>
+      dir_ls(recurse = TRUE, type = "dir", glob = "*/images")
+
     stopifnot(length(tmp_pth) == 1L)
 
-    if (hasArg(image_dir) && dir_exists(path(tmp_dir, "images"))) {
-      dir_copy(path(tmp_dir, "images"), dir_create(image_dir))
+    if (hasArg(image_dir) && length(img_pth) > 0) {
+      stopifnot(length(img_pth) == 1L)
+
+      dir_copy(img_pth, dir_create(image_dir))
     }
   }
 

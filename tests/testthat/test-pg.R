@@ -9,7 +9,7 @@ generate_mock_pg_download <- function(enc = "UTF-8", zip = FALSE, img = FALSE) {
 
   # write mock content
   tmp_dir <- dir_create(file_temp("mock_pg_download-"))
-  f <- path(tmp_dir, "index")
+  f <- path(tmp_dir, "index", ext = "html")
   con <- file(f, encoding = enc)
   writeLines(x, con)
   close(con)
