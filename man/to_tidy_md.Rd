@@ -7,6 +7,7 @@
 to_tidy_md(
   x,
   input_format,
+  media_dir = NULL,
   shift_heading_level_by = 0L,
   default_image_extension = "jpg",
   dpi = 300,
@@ -18,6 +19,9 @@ to_tidy_md(
 
 \item{input_format}{passed to Pandoc option
 \href{https://pandoc.org/MANUAL.html#general-options}{\code{--from}}}
+
+\item{media_dir}{passed to Pandoc option
+\href{https://pandoc.org/MANUAL.html#reader-options}{\code{--extract-media}}}
 
 \item{shift_heading_level_by}{passed to Pandoc option
 \href{https://pandoc.org/MANUAL.html#reader-options}{\code{--shift-heading-level-by}}}

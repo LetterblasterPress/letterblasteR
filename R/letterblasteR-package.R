@@ -20,6 +20,7 @@
 #' @importFrom fs dir_create
 #' @importFrom fs dir_exists
 #' @importFrom fs dir_ls
+#' @importFrom fs file_copy
 #' @importFrom fs file_exists
 #' @importFrom fs file_move
 #' @importFrom fs file_temp

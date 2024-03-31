@@ -164,3 +164,23 @@ pg_download_html <- function(url, zip = FALSE, encoding = "UTF-8", image_dir) {
   on.exit(close(con), add = TRUE, after = FALSE)
   iconv(readLines(con), to = "UTF-8")
 }
+
+#' @rdname pg_download
+#' @export
+pg_download_epub <- function(url, image_dir = NULL) {
+  tmp_dir <- dir_create(file_temp("epub"))
+  tmp_pth <- path(tmp_dir, "tmp.epub")
+  on.exit(unlink(tmp_dir, recursive = TRUE))
+
+  download.file(url, tmp_pth)
+
+  y <- to_tidy_md(tmp_pth, "epub", media_dir = image_dir)
+
+  # if (hasArg(image_dir) && length(img_pth) > 0) {
+  #   stopifnot(length(img_pth) == 1L)
+  #
+  #   dir_copy(img_pth, dir_create(image_dir))
+  # }
+
+  return(y)
+}

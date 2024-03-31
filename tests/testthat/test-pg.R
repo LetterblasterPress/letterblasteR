@@ -164,3 +164,31 @@ test_that("pg_download_text() and pg_download_html() processes (possibly zipped)
     return(invisible(NULL))
   })
 })
+
+test_that("pg_download_epub() process contentst, with and without images", {
+  tmp_dir <- dir_create(file_temp("epub-"))
+  qmd_pth <- path(tmp_dir, "mock.qmd")
+  epub_pth <- path(tmp_dir, "mock.epub")
+  img_dir <- path(tmp_dir, "epub_images")
+  on.exit(unlink(tmp_dir, recursive = TRUE))
+
+  file_copy(inst("mock.qmd"), qmd_pth)
+  quarto::quarto_render(qmd_pth, "epub", execute_dir = tmp_dir)
+
+  stub(pg_download_epub, "download.file", fs::file_copy)
+
+  expect_identical(
+    to_tidy_md(epub_pth, "epub") |>
+      sub(
+        pattern = "!\\[\\]\\((.+)(media/file\\d+\\.png)\\)",
+        replacement = "![](\\2)"
+      ),
+    pg_download_epub(epub_pth, image_dir = img_dir) |>
+      sub(
+        pattern = "!\\[\\]\\((.+)(media/file\\d+\\.png)\\)",
+        replacement = "![](\\2)"
+      )
+  )
+  expect_true(dir_exists(img_dir))
+  expect_true(file_exists(path(img_dir, "media", "file0.png")))
+})
