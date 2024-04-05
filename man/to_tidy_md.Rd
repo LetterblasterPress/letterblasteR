@@ -4,33 +4,13 @@
 \alias{to_tidy_md}
 \title{Convert document to Pandoc's Markdown}
 \usage{
-to_tidy_md(
-  x,
-  input_format,
-  media_dir = NULL,
-  shift_heading_level_by = 0L,
-  default_image_extension = "jpg",
-  dpi = 300,
-  ...
-)
+to_tidy_md(x, input_format, ...)
 }
 \arguments{
 \item{x}{path to single file or document text as a character vector}
 
 \item{input_format}{passed to Pandoc option
 \href{https://pandoc.org/MANUAL.html#general-options}{\code{--from}}}
-
-\item{media_dir}{passed to Pandoc option
-\href{https://pandoc.org/MANUAL.html#reader-options}{\code{--extract-media}}}
-
-\item{shift_heading_level_by}{passed to Pandoc option
-\href{https://pandoc.org/MANUAL.html#reader-options}{\code{--shift-heading-level-by}}}
-
-\item{default_image_extension}{passed to Pandoc option
-\href{https://pandoc.org/MANUAL.html#reader-options}{\code{--default-image-extension}}}
-
-\item{dpi}{passed to Pandoc option
-\href{https://pandoc.org/MANUAL.html#general-writer-options}{\code{--dpi}}}
 
 \item{...}{additional Pandoc options added to the \code{args} parameter of
 \code{\link[pandoc:pandoc_convert]{pandoc::pandoc_convert()}}}
@@ -40,4 +20,11 @@ Returns a character vector of tidy markdown
 }
 \description{
 Convert document to Pandoc's Markdown
+}
+\examples{
+# TODO --shift-heading-level-by
+# TODO --default-image-extension
+# TODO --dpi
+# TODO --extract-media
+
 }

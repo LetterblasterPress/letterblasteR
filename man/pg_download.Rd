@@ -2,30 +2,21 @@
 % Please edit documentation in R/pg.R
 \name{pg_download}
 \alias{pg_download}
-\alias{pg_download_text}
-\alias{pg_download_html}
-\alias{pg_download_epub}
 \title{Download Project Gutenberg content}
 \usage{
-pg_download_text(url, zip = FALSE, encoding = "UTF-8")
-
-pg_download_html(url, zip = FALSE, encoding = "UTF-8", image_dir)
-
-pg_download_epub(url, image_dir = NULL)
+pg_download(url, dest_dir, zip = FALSE)
 }
 \arguments{
 \item{url}{URL for Project Gutenberg file}
 
-\item{zip}{logical indicating if file is zipped}
+\item{dest_dir}{path to save (uncompressed) files}
 
-\item{encoding}{assumed encoding of source file}
-
-\item{image_dir}{path to copy accompanying image files to}
+\item{zip}{logical indicating if source file is zipped}
 }
 \value{
-Returns content as a UTF-encoded character vector.
+Returns path to \code{dest_dir} invisibly.
 }
 \description{
-These functions download content from Project Gutenberg, tidying intermediate
-files along the way.
+Download (possibly zipped) content from Project Gutenberg to a local
+directory.
 }

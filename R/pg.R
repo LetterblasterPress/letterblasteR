@@ -99,24 +99,19 @@ pg_files <- function(x) {
 
 #' Download Project Gutenberg content
 #'
-#' These functions download content from Project Gutenberg, tidying intermediate
-#' files along the way.
+#' Download (possibly zipped) content from Project Gutenberg to a local
+#' directory.
 #'
 #' @param url URL for Project Gutenberg file
-#' @param zip logical indicating if file is zipped
-#' @param encoding assumed encoding of source file
-#' @param image_dir path to copy accompanying image files to
+#' @param dest_dir path to save (uncompressed) files
+#' @param zip logical indicating if source file is zipped
 #'
-#' @return Returns content as a UTF-encoded character vector.
+#' @return Returns path to `dest_dir` invisibly.
 #'
-#' @name pg_download
-NULL
-
-#' @rdname pg_download
 #' @export
-pg_download_text <- function(url, zip = FALSE, encoding = "UTF-8") {
-  tmp_dir <- dir_create(file_temp("txt"))
-  tmp_pth <- path(tmp_dir, "txt", ext = ifelse(zip, "zip", "txt"))
+pg_download <- function(url, dest_dir, zip = FALSE) {
+  tmp_dir <- dir_create(file_temp("pg_download-"))
+  tmp_pth <- path(tmp_dir, path_file(url))
   on.exit(unlink(tmp_dir, recursive = TRUE))
 
   download.file(url, tmp_pth)
@@ -124,63 +119,7 @@ pg_download_text <- function(url, zip = FALSE, encoding = "UTF-8") {
   if (zip) {
     unzip(tmp_pth, exdir = tmp_dir)
     unlink(tmp_pth)
-    tmp_pth <- dir_ls(tmp_dir, type = "file")
-    stopifnot(length(tmp_pth) == 1L)
   }
 
-  con <- file(tmp_pth, encoding = match.arg(toupper(encoding), iconvlist()))
-  on.exit(close(con), add = TRUE, after = FALSE)
-  iconv(readLines(con), to = "UTF-8")
-}
-
-#' @rdname pg_download
-#' @export
-pg_download_html <- function(url, zip = FALSE, encoding = "UTF-8", image_dir) {
-  tmp_dir <- dir_create(file_temp("html"))
-  tmp_pth <- path(tmp_dir, "html", ext = ifelse(zip, "zip", "html"))
-  on.exit(unlink(tmp_dir, recursive = TRUE))
-
-  download.file(url, tmp_pth)
-
-  if (zip) {
-    unzip(tmp_pth, exdir = tmp_dir)
-    unlink(tmp_pth)
-
-    tmp_pth <- tmp_dir |>
-      dir_ls(recurse = TRUE, type = "file", regexp = "\\.html?$")
-    img_pth <- tmp_dir |>
-      dir_ls(recurse = TRUE, type = "dir", glob = "*/images")
-
-    stopifnot(length(tmp_pth) == 1L)
-
-    if (hasArg(image_dir) && length(img_pth) > 0) {
-      stopifnot(length(img_pth) == 1L)
-
-      dir_copy(img_pth, dir_create(image_dir))
-    }
-  }
-
-  con <- file(tmp_pth, encoding = match.arg(toupper(encoding), iconvlist()))
-  on.exit(close(con), add = TRUE, after = FALSE)
-  iconv(readLines(con), to = "UTF-8")
-}
-
-#' @rdname pg_download
-#' @export
-pg_download_epub <- function(url, image_dir = NULL) {
-  tmp_dir <- dir_create(file_temp("epub"))
-  tmp_pth <- path(tmp_dir, "tmp.epub")
-  on.exit(unlink(tmp_dir, recursive = TRUE))
-
-  download.file(url, tmp_pth)
-
-  y <- to_tidy_md(tmp_pth, "epub", media_dir = image_dir)
-
-  # if (hasArg(image_dir) && length(img_pth) > 0) {
-  #   stopifnot(length(img_pth) == 1L)
-  #
-  #   dir_copy(img_pth, dir_create(image_dir))
-  # }
-
-  return(y)
+  dir_copy(tmp_dir, dest_dir, overwrite = TRUE)
 }

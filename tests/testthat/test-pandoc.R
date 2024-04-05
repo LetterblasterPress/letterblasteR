@@ -1,43 +1,27 @@
-test_that("to_tidy_md() throws an error if not passed a character vector", {
-  expect_error(to_tidy_md(list()), "is not TRUE")
+test_that("to_tidy_md() processes a character vector", {
+  expect_identical(
+    to_tidy_md(readLines(inst("mocks/mock.txt")), "markdown"),
+    readLines(inst("mocks/tidy_mock-noimages.md"))
+  )
 })
 
-test_that("to_tidy_md() converts to tidy markdown, using temp file if needed", {
-  x <- c(
-    "",
-    "# Heading 1",
-    "", "",
-    paste(sample(stringr::sentences, 5), collapse = " "),
-    "",
-    sprintf("*  %s", sample(letters, 5))
+test_that("to_tidy_md() processes a path to a file", {
+  expect_identical(
+    to_tidy_md(inst("mocks/mock.txt"), "markdown"),
+    readLines(inst("mocks/tidy_mock-noimages.md"))
   )
+})
 
-  y <- list(
-    markdown = pandoc_convert(text = x, to = "markdown", args = "--columns=80"),
-    html = pandoc_convert(text = x, to = "html"),
-    epub = pandoc_convert(
-      text = x, to = "epub", output = file_temp(),
-      args = "--metadata title=letterblasteR"
-    )
+test_that("to_tidy_md() processes an html file", {
+  expect_identical(
+    to_tidy_md(inst("mocks/mock.html"), "html"),
+    readLines(inst("mocks/tidy_mock.html.md"))
   )
+})
 
-  stopifnot(file_exists(y$epub))
-  on.exit(unlink(y$epub))
-
-  expect_identical(to_tidy_md(x, "markdown"), y$markdown)
-  expect_identical(to_tidy_md(y$markdown, "markdown"), y$markdown)
-  expect_identical(to_tidy_md(y$html, "html"), y$markdown)
-  expect_equal(
-    ignore_attr = TRUE,
-    to_tidy_md(y$epub, "epub"),
-    c(
-      "[]{#title_page.xhtml}",
-      "",
-      "[]{#ch001.xhtml}",
-      "",
-      "::: {#ch001.xhtml#heading-1 .section .level1}",
-      y$markdown,
-      ":::"
-    )
+test_that("to_tidy_md() processes an epub file", {
+  expect_identical(
+    to_tidy_md(inst("mocks/mock.epub"), "epub"),
+    readLines(inst("mocks/tidy_mock.epub.md"))
   )
 })

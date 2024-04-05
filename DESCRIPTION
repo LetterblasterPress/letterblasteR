@@ -35,6 +35,7 @@ Imports:
     withr,
     yaml
 Suggests: 
+    digest,
     mockery,
     spelling,
     stringr,

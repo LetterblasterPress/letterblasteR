@@ -1,35 +1,5 @@
 library(mockery)
 
-generate_mock_pg_download <- function(enc = "UTF-8", zip = FALSE, img = FALSE) {
-  enc <- match.arg(toupper(enc), iconvlist())
-
-  # generate mock content
-  x <- letters
-  Encoding(x) <- enc
-
-  # write mock content
-  tmp_dir <- dir_create(file_temp("mock_pg_download-"))
-  f <- path(tmp_dir, "index", ext = "html")
-  con <- file(f, encoding = enc)
-  writeLines(x, con)
-  close(con)
-
-  # add images
-  if (img) {
-    img_dir <- dir_create(path(tmp_dir, "images"))
-    write("image 1", path(img_dir, "img1"))
-  }
-
-  # compress
-  if (zip) {
-    f <- fs::path_ext_set(f, "zip")
-
-    with_dir(tmp_dir, zip(f, dir_ls(recurse = TRUE)))
-  }
-
-  return(f)
-}
-
 ## pg_metadata #################################################################
 
 test_that("pg_metadata() returns errors for invalid inputs", {
@@ -65,71 +35,50 @@ test_that("pg_files() filters and aggregates metadata about each available file"
   expect_identical(pg_files(x), y)
 })
 
-## pg_download_* ###############################################################
+## pg_download #################################################################
 
-test_that("pg_download_text() and pg_download_html() processes (possibly zipped) content in various encodings, with and without images", {
-  mocks <- tidyr::expand_grid(
-    enc = c("US-ASCII", "ISO_8859-1", "UTF-8"),
-    zip = c(FALSE, TRUE),
-    img = c(FALSE, TRUE)
-  )
-  mocks$url <- purrr::pmap_chr(mocks, generate_mock_pg_download)
-  on.exit(unlink(fs::path_dir(mocks$url), recursive = TRUE))
+mock_pg_download <- function(type, zip = FALSE) {
+  type <- match.arg(type, c("txt", "html", "epub"))
+  tmp_dir <- dir_create(file_temp("mock_pg_download-"))
 
-  purrr::pmap(mocks, function(enc, zip, img, url) {
-    img_dir <- file_temp("images-")
-    on.exit(unlink(img_dir, recursive = TRUE))
+  x <- inst(path("mocks", "mock", ext = type))
+  y <- path(tmp_dir, path_file(x))
+  file_copy(x, y)
 
-    stub(pg_download_text, "download.file", fs::file_copy)
-    stub(pg_download_html, "download.file", fs::file_copy)
+  if (type == "html") {
+    dir_copy(inst("mocks/mock_files"), path(tmp_dir, "mock_files"))
+  }
 
-    txt <- pg_download_text(url = url, zip = zip, encoding = enc)
-    expect_type(txt, "character")
-    expect_identical(txt, letters)
-    expect_true(all(Encoding(txt) %in% c("unknown", "UTF-8")))
-    rm(txt)
+  if (zip) {
+    y <- fs::path_ext_set(y, "zip")
+    with_dir(tmp_dir, zip(path_file(y), dir_ls(recurse = TRUE)))
+  }
 
-    htm <- pg_download_html(url = url, zip = zip, encoding = enc, image_dir = img_dir)
-    expect_type(htm, "character")
-    expect_identical(htm, letters)
-    expect_true(all(Encoding(htm) %in% c("unknown", "UTF-8")))
-    rm(htm)
+  return(y)
+}
 
-    if (zip & img) {
-      expect_true(dir_exists(img_dir))
-      expect_true(fs::file_exists(path(img_dir, "images", "img1")))
-    } else {
-      expect_false(dir_exists(img_dir))
-    }
+test_pg_download <- function(type, zip = FALSE) {
+  tmp_dir <- dir_create(file_temp("test_pg_download-"))
+  mock_url <- mock_pg_download(type = type, zip = zip)
+  on.exit(unlink(c(tmp_dir, path_dir(mock_url)), recursive = TRUE))
 
-    return(invisible(NULL))
-  })
-})
+  stub(pg_download, "download.file", fs::file_copy)
+  y <- pg_download(mock_url, tmp_dir, zip = zip)
 
-test_that("pg_download_epub() process contentst, with and without images", {
-  tmp_dir <- dir_create(file_temp("epub-"))
-  qmd_pth <- path(tmp_dir, "mock.qmd")
-  epub_pth <- path(tmp_dir, "mock.epub")
-  img_dir <- path(tmp_dir, "epub_images")
-  on.exit(unlink(tmp_dir, recursive = TRUE))
-
-  file_copy(inst("mock.qmd"), qmd_pth)
-  quarto::quarto_render(qmd_pth, "epub", execute_dir = tmp_dir)
-
-  stub(pg_download_epub, "download.file", fs::file_copy)
-
+  expect_true(file_exists(mock_url))
+  expect_true(dir_exists(y))
   expect_identical(
-    to_tidy_md(epub_pth, "epub") |>
-      sub(
-        pattern = "!\\[\\]\\((.+)(media/file\\d+\\.png)\\)",
-        replacement = "![](\\2)"
-      ),
-    pg_download_epub(epub_pth, image_dir = img_dir) |>
-      sub(
-        pattern = "!\\[\\]\\((.+)(media/file\\d+\\.png)\\)",
-        replacement = "![](\\2)"
-      )
+    digest::digest(file = dir_ls(y, glob = paste0("*mock.", type))),
+    digest::digest(file = inst(path("mocks", "mock", ext = type)))
   )
-  expect_true(dir_exists(img_dir))
-  expect_true(file_exists(path(img_dir, "media", "file0.png")))
-})
+
+  if (type == "html" & zip) {
+    expect_true(dir_exists(path(tmp_dir, "mock_files")))
+  }
+}
+
+test_pg_download("txt")
+test_pg_download("txt", zip = TRUE)
+test_pg_download("html")
+test_pg_download("html", zip = TRUE)
+test_pg_download("epub")
