@@ -1,13 +1,36 @@
 ---
-title: "Mock Book"
+title: Mock Title
+subtitle: Mock Subtitle
+author: Mock Author
+date: "1970-01-01"
+abstract: |
+
+  #### Whatever wolf umami farm-to-table
+
+  The node on the stalk of wheat grew daily. Leaves turn brown and yellow in the
+  fall. Feel the heat of the weak dying flame.
+
+  #### Portland bitters Brooklyn mustache
+
+  The night shift men rate extra pay. In some forin or other we need fun. The
+  red paper brightened the dim stage. Take the match and strike it against your
+  shoe.
+
+execute:
+  echo: false
+  message: false
+  warning: false
+  error: false
+
+format:
+  html: default
+  epub: default
+  gfm:
+    output-ext: txt
+    execute:
+      eval: false
+      output: false
 ---
-
-```{r}
-#| label: setup
-#| include: false
-
-library(tidyverse)
-```
 
 # Basic Markdown
 
@@ -55,6 +78,27 @@ settle. The big red apple fell to the ground.
 The crunch of feet in the snow was the only sound. A king ruled the state in the
 early days. The fight will end in just six minutes. Loop the braid to the left
 and then over. What joy there is in living.
+
+## Inline formatting and links
+
+|                  |                            |                          |
+|:-----------------|:--------------------------:|:------------------------:|
+| Pandoc ligatures |  `--, ---, ..., 'x', "x"`  |  --, ---, ..., 'x', "x"  |
+| common ligatures |   `ff, fi, fl, ffi, ffl`   |   ff, fi, fl, ffi, ffl   |
+| emphasis         |    `*emphasized text*`     |    *emphasized text*     |
+| strong           |     `**strong text**`      |     **strong text**      |
+| strikeout        |    `~~strikeout text~~`    |    ~~strikeout text~~    |
+| subscript        |          `H~2~O`           |          H~2~O           |
+| superscript      |          `2^10^`           |          2^10^           |
+| verbatim         |   `` `verbatim text` ``    |     `verbatim text`      |
+| math             |      `$e^{i\pi}=-1$`       |      $e^{i\pi}=-1$       |
+| small caps       | `[small caps]{.smallcaps}` | [small caps]{.smallcaps} |
+
+## Math
+
+$$
+E = mc^{2}
+$$
 
 ## Block quotations
 
@@ -132,14 +176,80 @@ and then over. What joy there is in living.
     onto the lawn. The sink is the thing in which we pile dishes. The first part
     of the plan needs changing. A chink in the wall allowed a draft to blow.
 
-## Images
+### Definition lists
+
+Gentrify
+
+:   Kitsch mixtape post-ironic DIY paleo.
+
+Bespoke
+
+:   Kale chips fanny pack you probably haven't heard of them Austin freegan
+    Shoreditch, distillery flannel cardigan.
+
+Sriracha
+
+:   Ethnic letterpress cred, Neutra distillery fanny pack kale chips forage
+    leggings 8-bit 90's Thundercats.
+
+## Footnotes
+
+For[^1] sale[^2]: baby[^3] shoes[^4], never[^5] worn[^6].
+
+[^1]: Kevin Bacon
+
+[^2]: Lori Singer
+
+[^3]: John Lithgow
+
+[^4]: Dianne Wiest
+
+[^5]: Chris Penn
+
+[^6]: Loose, footloose kick off your Sunday shoes. Please, Louise pull me off a
+    my knees. Jack, get back c'mon before we crack. Lose your blues everybody
+    cut footloose. Oowhee, Marie shake it, shake it for me. Whoa, Milo c'mon,
+    c'mon let's go. Lose your blues everybody cut footloose. Cut footloose. Cut
+    footloose. Cut footloose.
+
+## Horizontal rules
+
+--------------------------------------------------------------------------------
+
+## Page break
+
+{{< pagebreak >}}
+
+# Tables
 
 ```{r}
-#| label: image
-#| echo: false
+#| fig-cap: ...check for tabular numbers too!
 
-iris |>
-  ggplot(aes(Sepal.Length, Sepal.Width, colour = Species)) +
-  geom_point() +
-  geom_smooth(formula = y ~ x, method = "loess", se = FALSE)
+head(iris) |>
+  knitr::kable()
 ```
+
+# Figures
+
+```{r}
+#| label: fig-charts-r
+#| fig-cap: Charts
+#| fig-subcap:
+#|   - "Cars"
+#|   - "Pressure"
+#| layout-ncol: 2
+
+plot(cars)
+plot(pressure)
+```
+
+See the [Quarto docs](https://quarto.org/docs/authoring/figures.html) for
+fancier examples including advanced figure arrangement.
+
+# Divs
+
+## Custom classes
+
+::: border
+This content is styled with the `.border` class.
+:::

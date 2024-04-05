@@ -36,7 +36,6 @@ Imports:
     yaml
 Suggests: 
     mockery,
-    quarto,
     spelling,
     stringr,
     testthat (>= 3.0.0),
