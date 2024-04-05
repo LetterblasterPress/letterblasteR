@@ -73,7 +73,7 @@ diff_css <- function(palette = "vscode") {
 diff_to_html <- function(x) {
   stopifnot(is(x, "unidiff"))
   ansi_html(x) |>
-    paste(collapse = "\n") |>
+    paste(collapse = "<br>\n") |>
     HTML()
 }
 

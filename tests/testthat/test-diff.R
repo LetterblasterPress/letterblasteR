@@ -53,7 +53,7 @@ test_that("diff_to_html() converts the diff to HTML", {
   diff_text(letters, sub("d", "D", letters)) |>
     diff_to_html() |>
     expect_equal(
-      HTML(paste(collapse = "\n", c(
+      HTML(paste(collapse = "<br>\n", c(
         "<span class=\"ansi ansi-bold\">diff --git a/file b/file</span>",
         "index 0edb856..ccb7357 100644",
         "--- a/file",
