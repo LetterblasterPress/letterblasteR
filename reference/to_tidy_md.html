@@ -48,15 +48,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">to_tidy_md</span><span class="op">(</span></span>
-<span>  <span class="va">x</span>,</span>
-<span>  <span class="va">input_format</span>,</span>
-<span>  media_dir <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  shift_heading_level_by <span class="op">=</span> <span class="fl">0L</span>,</span>
-<span>  default_image_extension <span class="op">=</span> <span class="st">"jpg"</span>,</span>
-<span>  dpi <span class="op">=</span> <span class="fl">300</span>,</span>
-<span>  <span class="va">...</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">to_tidy_md</span><span class="op">(</span><span class="va">x</span>, <span class="va">input_format</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -68,26 +60,6 @@
 <dt>input_format</dt>
 <dd><p>passed to Pandoc option
 <a href="https://pandoc.org/MANUAL.html#general-options" class="external-link"><code>--from</code></a></p></dd>
-
-
-<dt>media_dir</dt>
-<dd><p>passed to Pandoc option
-<a href="https://pandoc.org/MANUAL.html#reader-options" class="external-link"><code>--extract-media</code></a></p></dd>
-
-
-<dt>shift_heading_level_by</dt>
-<dd><p>passed to Pandoc option
-<a href="https://pandoc.org/MANUAL.html#reader-options" class="external-link"><code>--shift-heading-level-by</code></a></p></dd>
-
-
-<dt>default_image_extension</dt>
-<dd><p>passed to Pandoc option
-<a href="https://pandoc.org/MANUAL.html#reader-options" class="external-link"><code>--default-image-extension</code></a></p></dd>
-
-
-<dt>dpi</dt>
-<dd><p>passed to Pandoc option
-<a href="https://pandoc.org/MANUAL.html#general-writer-options" class="external-link"><code>--dpi</code></a></p></dd>
 
 
 <dt>...</dt>
@@ -102,6 +74,16 @@
 <p>Returns a character vector of tidy markdown</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># TODO --shift-heading-level-by</span></span></span>
+<span class="r-in"><span><span class="co"># TODO --default-image-extension</span></span></span>
+<span class="r-in"><span><span class="co"># TODO --dpi</span></span></span>
+<span class="r-in"><span><span class="co"># TODO --extract-media</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
