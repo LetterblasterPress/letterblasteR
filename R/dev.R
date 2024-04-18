@@ -86,7 +86,7 @@ dev_check <- function() {
 #'    with calls to [spelling::spell_check_package()] and
 #'    [spelling::update_wordlist()].
 #'  * [dev_build_site()] builds the documentation site with calls to
-#'    [dev_publish_notebooks()] and [pkgdown::build_site()], then loads a
+#'    [dev_publish_vignettes()] and [pkgdown::build_site()], then loads a
 #'    preview in the RStudio Viewer pane.
 #'  * [dev_coverage()] runs code coverage checks with calls to
 #'    [covr::package_coverage()] and [covr::file_report()].
@@ -99,22 +99,22 @@ dev_check <- function() {
 #' found, a user confirmation is required before updating the custom dictionary;
 #' otherwise an error is thrown.
 #'
-#' ## About "notebooks"
+#' ## About *vignettes-raw*
 #'
 #' [pkgdown::build_site()] generates a documentation site for your package,
 #' including an "Articles" section that contains rendered package vignettes.
 #' This works great for simple demos, but [pkgdown::build_site()] re-renders
 #' every R Markdown vignette when building the site, making it impractical for
-#' long-running notebooks or when code requires specific resources. This
-#' function introduces the concept of a `notebooks` subdirectory as a place for
+#' long-running vignettes or when code requires specific resources. This
+#' function introduces the concept of a *vignettes-raw* subdirectory as a place for
 #' notebooks and R Markdown documents that are only run manually.
 #'
-#' To enable this feature, simply render R Markdown documents in `notebooks`
+#' To enable this feature, simply render R Markdown documents in *vignettes-raw*
 #' with `keep_md: true`. When you are ready to "publish", simply check in the
 #' rendered `*.md` file (plus any supporting files) into source control.
 #'
-#' [dev_publish_notebooks()] employs a simple hack to add these documents to the
-#' package site without re-rendering. Briefly, the `notebooks` directory is
+#' [dev_publish_vignettes()] employs a simple hack to add these documents to the
+#' package site without re-rendering. Briefly, the *vignettes-raw* directory is
 #' copied into the `vignettes` directory, and some name changes are applied so
 #' [pkgdown::build_site()] uses the (pre-rendered) *Markdown* file, rather than
 #' the source *R Markdown* file.
@@ -185,8 +185,8 @@ dev_spell_check <- function() {
 
 #' @rdname dev_check_helpers
 dev_build_site <- function() {
-  dev_publish_notebooks()
-  on.exit(unlink("vignettes/notebooks", recursive = TRUE))
+  dev_publish_vignettes()
+  on.exit(unlink("vignettes/vignettes-raw", recursive = TRUE))
 
   pkgdown::build_site(preview = FALSE)
 
@@ -208,19 +208,19 @@ dev_build_site <- function() {
 }
 
 #' @rdname dev_check_helpers
-dev_publish_notebooks <- function() {
+dev_publish_vignettes <- function() {
   md_paths <- tryCatch(
-    dir_ls("notebooks", glob = "*.md", recurse = TRUE),
+    dir_ls("vignettes-raw", glob = "*.md", recurse = TRUE),
     error = function(e) c()
   )
 
   if (length(md_paths) > 0) {
     dir_create("vignettes")
-    dir_copy("notebooks", "vignettes")
-    unlink(dir_ls("vignettes/notebooks", glob = "*.Rmd", recurse = TRUE))
+    dir_copy("vignettes-raw", "vignettes")
+    unlink(dir_ls("vignettes/vignettes-raw", glob = "*.Rmd", recurse = TRUE))
     file_move(
-      dir_ls("vignettes/notebooks", glob = "*.md", recurse = TRUE),
-      dir_ls("vignettes/notebooks", glob = "*.md", recurse = TRUE) |>
+      dir_ls("vignettes/vignettes-raw", glob = "*.md", recurse = TRUE),
+      dir_ls("vignettes/vignettes-raw", glob = "*.md", recurse = TRUE) |>
         fs::path_ext_set("Rmd")
     )
   }

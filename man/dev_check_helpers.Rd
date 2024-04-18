@@ -6,7 +6,7 @@
 \alias{dev_document}
 \alias{dev_spell_check}
 \alias{dev_build_site}
-\alias{dev_publish_notebooks}
+\alias{dev_publish_vignettes}
 \alias{dev_coverage}
 \title{Helper functions called by \code{dev_check()}}
 \usage{
@@ -18,7 +18,7 @@ dev_spell_check()
 
 dev_build_site()
 
-dev_publish_notebooks()
+dev_publish_vignettes()
 
 dev_coverage(file = NULL)
 }
@@ -42,7 +42,7 @@ to \code{\link[devtools:document]{devtools::document()}} and \code{\link[usethis
 with calls to \code{\link[spelling:spell_check_package]{spelling::spell_check_package()}} and
 \code{\link[spelling:wordlist]{spelling::update_wordlist()}}.
 \item \code{\link[=dev_build_site]{dev_build_site()}} builds the documentation site with calls to
-\code{\link[=dev_publish_notebooks]{dev_publish_notebooks()}} and \code{\link[pkgdown:build_site]{pkgdown::build_site()}}, then loads a
+\code{\link[=dev_publish_vignettes]{dev_publish_vignettes()}} and \code{\link[pkgdown:build_site]{pkgdown::build_site()}}, then loads a
 preview in the RStudio Viewer pane.
 \item \code{\link[=dev_coverage]{dev_coverage()}} runs code coverage checks with calls to
 \code{\link[covr:package_coverage]{covr::package_coverage()}} and \code{\link[covr:file_report]{covr::file_report()}}.
@@ -56,22 +56,22 @@ found, a user confirmation is required before updating the custom dictionary;
 otherwise an error is thrown.
 }
 
-\subsection{About "notebooks"}{
+\subsection{About \emph{vignettes-raw}}{
 
 \code{\link[pkgdown:build_site]{pkgdown::build_site()}} generates a documentation site for your package,
 including an "Articles" section that contains rendered package vignettes.
 This works great for simple demos, but \code{\link[pkgdown:build_site]{pkgdown::build_site()}} re-renders
 every R Markdown vignette when building the site, making it impractical for
-long-running notebooks or when code requires specific resources. This
-function introduces the concept of a \code{notebooks} subdirectory as a place for
+long-running vignettes or when code requires specific resources. This
+function introduces the concept of a \emph{vignettes-raw} subdirectory as a place for
 notebooks and R Markdown documents that are only run manually.
 
-To enable this feature, simply render R Markdown documents in \code{notebooks}
+To enable this feature, simply render R Markdown documents in \emph{vignettes-raw}
 with \code{keep_md: true}. When you are ready to "publish", simply check in the
 rendered \verb{*.md} file (plus any supporting files) into source control.
 
-\code{\link[=dev_publish_notebooks]{dev_publish_notebooks()}} employs a simple hack to add these documents to the
-package site without re-rendering. Briefly, the \code{notebooks} directory is
+\code{\link[=dev_publish_vignettes]{dev_publish_vignettes()}} employs a simple hack to add these documents to the
+package site without re-rendering. Briefly, the \emph{vignettes-raw} directory is
 copied into the \code{vignettes} directory, and some name changes are applied so
 \code{\link[pkgdown:build_site]{pkgdown::build_site()}} uses the (pre-rendered) \emph{Markdown} file, rather than
 the source \emph{R Markdown} file.
