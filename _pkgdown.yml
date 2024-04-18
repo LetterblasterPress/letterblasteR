@@ -18,6 +18,11 @@ reference:
       - diff_text
       - diff_helpers
       - to_tidy_md
+  - title: "Package datasets"
+    desc: >
+      The package includes a few datasets to help make page layout decisions.
+    contents:
+      - ratios
   - title: "Developer tools"
     desc: >
       The following functions are intended to streamline common tasks for

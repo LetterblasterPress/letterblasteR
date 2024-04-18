@@ -1,0 +1,43 @@
+---
+title: "Harmonious ratios"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Harmonious ratios}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+keep-md: true
+---
+
+
+
+
+::: {.cell}
+
+```{.r .cell-code}
+ratios <- c(
+  "unison" = 1 / 1,
+  "minor 2nd" = 16 / 15,
+  "major 2nd" = 9 / 8,
+  "minor 3rd" = 6 / 5,
+  "major 3rd" = 5 / 4,
+  "fourth" = 4 / 3,
+  "fifth" = 3 / 2,
+  "minor 6th" = 8 / 5,
+  "major 6th" = 5 / 3,
+  "minor 7th" = 16 / 9,
+  "major 7th" = 15 / 8,
+  "octave" = 2 / 1,
+  "double octave" = 4 / 1,
+
+  "triple" = 3 / 1,
+
+  "golden ratio" = (1 + sqrt(5)) / 2
+) |>
+  sort() |>
+  imap(~ set_names(c(.x, 1 / .x), c(.y, paste("inverse", .y)))) |>
+  reduce(c) %>%
+  subset(!duplicated(.)) # remove "inverse unison" (1 == 1 / 1)
+```
+:::
+
+
