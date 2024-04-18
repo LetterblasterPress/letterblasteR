@@ -242,17 +242,17 @@ test_that("dev_publish_vignettes() returns TRUE and copies existing files", {
   wd_vs <- dir_create(path(wd, "vignettes-raw"))
   wd_vs_a <- dir_create(path(wd_vs, "assets"))
 
-  rmd <- uuid::UUIDgenerate()
+  qmd <- uuid::UUIDgenerate()
   md <- uuid::UUIDgenerate()
   img <- uuid::UUIDgenerate()
 
-  write(rmd, path(wd_vs, "foo.Rmd"))
+  write(qmd, path(wd_vs, "foo.qmd"))
   write(md, path(wd_vs, "foo.md"))
   write(img, path(wd_vs_a, "img"))
 
   expect_true(withr::with_dir(wd, dev_publish_vignettes()))
   expect_true(length(dir_ls(wd_v, type = "file", recurse = TRUE)) == 2L)
-  expect_identical(readLines(path(wd_v, "vignettes-raw", "foo.Rmd")), md) # sic
+  expect_identical(readLines(path(wd_v, "vignettes-raw", "foo.qmd")), md) # sic
 })
 
 ## dev_build_site ##############################################################

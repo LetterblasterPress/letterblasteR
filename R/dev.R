@@ -217,11 +217,11 @@ dev_publish_vignettes <- function() {
   if (length(md_paths) > 0) {
     dir_create("vignettes")
     dir_copy("vignettes-raw", "vignettes")
-    unlink(dir_ls("vignettes/vignettes-raw", glob = "*.Rmd", recurse = TRUE))
+    unlink(dir_ls("vignettes/vignettes-raw", glob = "*.qmd", recurse = TRUE))
     file_move(
       dir_ls("vignettes/vignettes-raw", glob = "*.md", recurse = TRUE),
       dir_ls("vignettes/vignettes-raw", glob = "*.md", recurse = TRUE) |>
-        fs::path_ext_set("Rmd")
+        fs::path_ext_set("qmd")
     )
   }
 
