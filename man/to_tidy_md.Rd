@@ -4,13 +4,16 @@
 \alias{to_tidy_md}
 \title{Convert document to Pandoc's Markdown}
 \usage{
-to_tidy_md(x, input_format, ...)
+to_tidy_md(x, input_format, to = "markdown", ...)
 }
 \arguments{
 \item{x}{path to single file or document text as a character vector}
 
 \item{input_format}{passed to Pandoc option
 \href{https://pandoc.org/MANUAL.html#general-options}{\code{--from}}}
+
+\item{to}{passed to Pandoc option
+\href{https://pandoc.org/MANUAL.html#general-options}{\code{--to}}}
 
 \item{...}{additional Pandoc options added to the \code{args} parameter of
 \code{\link[pandoc:pandoc_convert]{pandoc::pandoc_convert()}}}

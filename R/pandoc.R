@@ -3,6 +3,8 @@
 #' @param x path to single file or document text as a character vector
 #' @param input_format passed to Pandoc option
 #'   [`--from`](https://pandoc.org/MANUAL.html#general-options)
+#' @param to passed to Pandoc option
+#'   [`--to`](https://pandoc.org/MANUAL.html#general-options)
 #' @param ... additional Pandoc options added to the `args` parameter of
 #'   [pandoc::pandoc_convert()]
 #'
@@ -15,7 +17,7 @@
 #' # TODO --extract-media
 #'
 #' @export
-to_tidy_md <- function(x, input_format, ...) {
+to_tidy_md <- function(x, input_format, to = "markdown", ...) {
   tmp_dir <- dir_create(file_temp("tidy_md-"))
   tmp_pth_x <- path(tmp_dir, "temp", ext = input_format)
   on.exit(unlink(tmp_dir, recursive = TRUE))
@@ -33,7 +35,7 @@ to_tidy_md <- function(x, input_format, ...) {
       pandoc::pandoc_convert(
         file = path_file(tmp_pth_x),
         from = input_format,
-        to = "markdown",
+        to = to,
         standalone = FALSE,
         args = c(
           "--fail-if-warnings",
