@@ -44,6 +44,7 @@
 #' @importFrom purrr map
 #' @importFrom purrr map_chr
 #' @importFrom purrr map_dbl
+#' @importFrom purrr map_dfc
 #' @importFrom purrr map_lgl
 #' @importFrom purrr map_vec
 #' @importFrom rstudioapi viewer
