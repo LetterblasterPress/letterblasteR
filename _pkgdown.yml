@@ -18,6 +18,11 @@ reference:
       - diff_text
       - diff_helpers
       - to_tidy_md
+  - title: "Page layout tools"
+    desc: >
+      The following functions help plan a harmonious page layout for a work.
+    contents:
+      - degrees
   - title: "Package datasets"
     desc: >
       The package includes a few datasets to help make page layout decisions.

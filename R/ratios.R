@@ -21,3 +21,22 @@
 #'
 #' @examples cbind(ratios)
 "ratios"
+
+#' Convert proportions to angles
+#'
+#' This trigonometric helper calculates the angle of the diagonal for a
+#' rectangle of given dimensions.
+#'
+#' @param h,w pairwise height & width vectors representing input proportions
+#'
+#' @return Returns a vector of angles in degrees
+#'
+#' @export
+#'
+#' @examples
+#' degrees(0, 1)
+#' degrees(1, 1)
+#' degrees(1, 0)
+degrees <- function(h, w = 1) {
+  180 * atan2(h, w) / pi
+}
