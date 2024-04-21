@@ -64,3 +64,4 @@
 NULL
 
 utils::globalVariables(".data")
+utils::globalVariables("ratios")
