@@ -47,6 +47,7 @@
 #' @importFrom purrr map_dfc
 #' @importFrom purrr map_lgl
 #' @importFrom purrr map_vec
+#' @importFrom purrr map2_dbl
 #' @importFrom rstudioapi viewer
 #' @importFrom styler style_pkg
 #' @importFrom tibble tibble

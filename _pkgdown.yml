@@ -25,6 +25,7 @@ reference:
       - degrees
       - name_ratios
       - round_ratios
+      - score_ratios
   - title: "Package datasets"
     desc: >
       The package includes a few datasets to help make page layout decisions.
