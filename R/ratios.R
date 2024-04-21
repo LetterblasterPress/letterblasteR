@@ -22,6 +22,27 @@
 #' @examples cbind(ratios)
 "ratios"
 
+#' Match numeric proportions to named harmonious ratios
+#'
+#' This function simply looks up the name of the harmonious ratio that matches
+#' the input proportion.
+#'
+#' @param h,w pairwise height & width vectors representing input proportions
+#'
+#' @return Returns a character vector of ratio names or NA for input
+#' proportions that lack a match in `letterblasteR::ratios`
+#'
+#' @export
+#'
+#' @seealso `vignette("ratios")`
+#'
+#' @examples
+#' name_ratios(3, 2)
+#' name_ratios(3.0001, 2)
+name_ratios <- function(h, w = 1) {
+  names(ratios)[match(h / w, ratios)]
+}
+
 #' Convert proportions to angles
 #'
 #' This trigonometric helper calculates the angle of the diagonal for a

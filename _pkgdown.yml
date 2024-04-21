@@ -23,6 +23,7 @@ reference:
       The following functions help plan a harmonious page layout for a work.
     contents:
       - degrees
+      - name_ratios
       - round_ratios
   - title: "Package datasets"
     desc: >

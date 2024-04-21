@@ -1,3 +1,5 @@
+## degrees() ###################################################################
+
 test_that("degrees() converts legths to corresponding polar angles", {
   expect_identical(degrees(0, 1), 0)
   expect_identical(degrees(1, 1), 45)
@@ -7,6 +9,8 @@ test_that("degrees() converts legths to corresponding polar angles", {
   expect_identical(degrees(pi, pi), 45)
   expect_identical(degrees(pi, 0), 90)
 })
+
+## round_ratios() ##############################################################
 
 test_that("round_ratios() identifies exact ratios", {
   expect_identical(round_ratios(ratios), ratios)
@@ -45,4 +49,13 @@ test_that("round_ratios() accpets changes to the width argument", {
     round_ratios(3:2, 2:3),
     c("fifth" = 1.5, "inverse fifth" = 1 / 1.5)
   )
+})
+
+## name_ratios() ###############################################################
+
+test_that("name_ratios() returns a character vector of (possibly NA) names", {
+  expect_identical(name_ratios(3, 2), "fifth")
+  expect_identical(name_ratios(3 / 2), "fifth")
+  expect_identical(name_ratios(pi), as.character(NA))
+  expect_identical(name_ratios(ratios), names(ratios))
 })
