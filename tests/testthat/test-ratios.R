@@ -59,14 +59,3 @@ test_that("name_ratios() returns a character vector of (possibly NA) names", {
   expect_identical(name_ratios(pi), as.character(NA))
   expect_identical(name_ratios(ratios), names(ratios))
 })
-
-## score_ratios() ##############################################################
-
-test_that("score_ratios() returns a numeric vector of scores", {
-  expect_identical(score_ratios(3, 2), c("fifth" = 1))
-  expect_identical(score_ratios(3:2, 2:3), c("fifth" = 1, "inverse fifth" = 1))
-  expect_identical(score_ratios(5), setNames(as.numeric(NA), NA))
-  expect_identical(score_ratios(4), c("double octave" = 1))
-  expect_identical(score_ratios(4.01, tolerance = 0.1), c("double octave" = 4 / 4.01))
-  expect_identical(score_ratios(3.99, tolerance = 0.1), c("double octave" = 3.99 / 4))
-})

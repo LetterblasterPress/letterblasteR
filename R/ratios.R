@@ -119,30 +119,3 @@ round_ratios <- function(
 
   ratios[index]
 }
-
-#' Score how well a proportion matches a harmonious ratio
-#'
-#' This function identifies the nearest harmonious ratio with a call to
-#' `round_ratios()` and calculates the difference in area between the actual
-#' proportion and the ideal. The returned score describes the percent overlap
-#' of the two rectangles.
-#'
-#' @param h,w pairwise height & width vectors representing input proportions
-#' @param ... optional arguments passed to `round_ratios()`
-#'
-#' @return Returns a named numeric vector of scores in \[0, 1\]
-#'
-#' @export
-#'
-#' @examples
-#' score_ratios(3, 2)
-#' score_ratios(3 + 1e-4, 2)
-#' score_ratios(3 - 1e-4, 2)
-#' score_ratios(4)
-#' score_ratios(5)
-score_ratios <- function(h, w = 1, ...) {
-  actual_area <- w * h
-  expected_area <- w^2 * round_ratios(h, w, ...)
-  error <- abs(actual_area - expected_area)
-  return(1 - error / map2_dbl(actual_area, expected_area, max))
-}
