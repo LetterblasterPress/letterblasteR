@@ -51,5 +51,5 @@ ratios <- c(
 #| label: export
 #| include: false
 
-usethis::use_data(ratios)
+usethis::use_data(ratios, overwrite = TRUE)
 ```

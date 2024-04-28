@@ -28,9 +28,7 @@ ratios <- c(
   "major 7th" = 15 / 8,
   "octave" = 2 / 1,
   "double octave" = 4 / 1,
-
   "triple" = 3 / 1,
-
   "golden ratio" = (1 + sqrt(5)) / 2
 ) |>
   sort() |>
