@@ -4,6 +4,7 @@
 .Rdata
 .Rhistory
 .Rproj.user
+**/*_cache/*
 docs
 inst/doc
 scratch

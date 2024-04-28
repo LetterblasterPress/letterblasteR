@@ -12,6 +12,7 @@ embedable
 epub
 memoise
 pre
+textblock
 tidyverse
 vdiff
 yaml
