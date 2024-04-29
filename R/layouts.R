@@ -41,3 +41,75 @@
 #' @examples
 #' str(layouts)
 "layouts"
+
+#' Visualize harmonious layouts
+#'
+#' This function plots harmonious layouts, using transparency to overlay
+#' multiple similar layouts at a time. It is meant to give an overview of
+#' layout options and to home in on a subset of candidates for a project.
+#'
+#' @param x subset of `layouts`
+#'
+#' @return Returns a ggplot.
+#' @export
+#'
+#' @examples
+#' plot_layouts(layouts)
+#'
+#' layouts |>
+#'   subset(
+#'     layouts$page_ratio %in% c("fourth", "fifth") &
+#'       dplyr::between(ratios[layouts$text_ratio], 1.2, 1.6) &
+#'       dplyr::between(layouts$text_pct, 0.5, 0.75)
+#'   ) |>
+#'   plot_layouts()
+plot_layouts <- function(x) {
+  x |>
+    transmute(
+      across(ends_with("ratio")),
+      text_pct,
+      page_left__x1 = -page_width,
+      page_left__x2 = 0,
+      page_left__y1 = -0.5 * page_height,
+      page_left__y2 = 0.5 * page_height,
+      page_right__x1 = 0,
+      page_right__x2 = page_width,
+      page_right__y1 = -0.5 * page_height,
+      page_right__y2 = 0.5 * page_height,
+      text_left__x1 = -i_mar - text_width,
+      text_left__x2 = -i_mar,
+      text_left__y1 = -0.5 * page_height + b_mar,
+      text_left__y2 = -0.5 * page_height + b_mar + text_height,
+      text_right__x1 = i_mar,
+      text_right__x2 = i_mar + text_width,
+      text_right__y1 = -0.5 * page_height + b_mar,
+      text_right__y2 = -0.5 * page_height + b_mar + text_height
+    ) |>
+    pivot_longer(matches("__")) |>
+    separate("name", into = c("box", "name"), sep = "__") |>
+    pivot_wider() |>
+    mutate(alpha = if_else(grepl("page", .data$box), 1, 0.5)) |>
+    arrange(page_ratio, text_ratio, .data$box, desc(text_pct)) |>
+    ggplot(aes(xmin = .data$x1, xmax = .data$x2, ymin = .data$y1, ymax = .data$y2)) +
+    geom_rect(aes(fill = .data$box, alpha = .data$alpha), colour = NA) +
+    scale_fill_manual(values = c("white", "white", "black", "black")) +
+    facet_grid(
+      fct_rev(fct_relabel(page_ratio, ~ sub(" ", "\n", .))) ~
+        fct_relabel(text_ratio, ~ sub(" ", "\n", .)),
+      switch = "y"
+    ) +
+    theme(
+      aspect.ratio = 1,
+      axis.title = element_blank(),
+      axis.text = element_blank(),
+      axis.ticks = element_blank(),
+      axis.line = element_blank(),
+      panel.border = element_blank(),
+      panel.grid = element_blank(),
+      legend.position = "none",
+      panel.background = element_rect(fill = "grey35"),
+      strip.background = element_rect(fill = "white"),
+      panel.spacing = unit(-1, "point"),
+    ) +
+    labs(caption = sprintf("%s layouts", format(nrow(x), big.mark = ",")))
+}

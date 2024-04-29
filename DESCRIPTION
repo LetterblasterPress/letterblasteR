@@ -17,8 +17,11 @@ Imports:
     covr,
     devtools,
     dplyr,
+    forcats,
     fs,
     gert,
+    ggplot2,
+    grid,
     htmltools,
     magrittr,
     methods,
@@ -30,6 +33,7 @@ Imports:
     styler,
     tibble,
     tidyr,
+    tidyselect,
     usethis,
     utils,
     withr,
@@ -42,7 +46,8 @@ Suggests:
     spelling,
     stringr,
     testthat (>= 3.0.0),
-    uuid
+    uuid,
+    vdiffr
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
