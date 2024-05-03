@@ -47,7 +47,7 @@ jobs:
 
       - name: Build site
         run: |
-          devtools::install()
+          Rscript -e "devtools::install()"
           Rscript -e "letterblasteR:::dev_publish_vignettes()"
           Rscript -e "pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)"
 
