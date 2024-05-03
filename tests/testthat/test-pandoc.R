@@ -5,7 +5,6 @@ test_that("to_tidy_md() processes a simple text file", {
 })
 
 test_that("to_tidy_md() processes a character vector", {
-  skip_on_ci()
   expect_identical(
     to_tidy_md(readLines(inst("mocks/mock.txt")), "markdown"),
     readLines(inst("mocks/tidy_mock-noimages.md"))
@@ -13,7 +12,6 @@ test_that("to_tidy_md() processes a character vector", {
 })
 
 test_that("to_tidy_md() processes a path to a file", {
-  skip_on_ci()
   expect_identical(
     to_tidy_md(inst("mocks/mock.txt"), "markdown"),
     readLines(inst("mocks/tidy_mock-noimages.md"))
@@ -29,7 +27,6 @@ test_that("to_tidy_md() processes an html file", {
 })
 
 test_that("to_tidy_md() processes an epub file", {
-  skip_on_ci()
   expect_identical(
     to_tidy_md(inst("mocks/mock.epub"), "epub"),
     readLines(inst("mocks/tidy_mock.epub.md"))
