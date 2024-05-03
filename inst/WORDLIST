@@ -2,6 +2,7 @@ CMD
 Codecov
 Letterblaster
 Lifecycle
+LuaLaTeX
 Pandoc
 Pandoc's
 RDF
@@ -10,9 +11,13 @@ Rmarkdown
 deduplicated
 embedable
 epub
+fontsize
+fontspec
 ggplot
 memoise
+pdftools
 pre
+sd
 textblock
 tidyverse
 vdiff

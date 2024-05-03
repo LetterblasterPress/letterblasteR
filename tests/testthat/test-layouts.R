@@ -12,3 +12,25 @@ test_that("plot_layouts() plots all layouts or a subset", {
   vdiffr::expect_doppelganger("Plot all layouts", plot_all)
   vdiffr::expect_doppelganger("Plot subset of layouts", plot_some)
 })
+
+test_that("fit_layouts_to_text_width() does some sensible math", {
+  y <- fit_layouts_to_text_width(4)
+  expect_identical(
+    names(y),
+    c(names(layouts), "font_size", "min_lines", "max_lines")
+  )
+  expect_true(all(y$page_height < 8.5))
+  expect_true(all(y$page_width < 5.5))
+  expect_true(max(abs(diff(y$text_width, 4))) < 1e-12)
+  expect_true(all(y$font_size == 10))
+})
+
+test_that("fit_layouts_to_text_width() estimates lines according to text size", {
+  y <- fit_layouts_to_text_width(4)
+  y12 <- fit_layouts_to_text_width(4, fontsize = "12pt")
+
+  expect_true(all(y$font_size == 10))
+  expect_true(all(y12$font_size == 12))
+  expect_true(mean(y$min_lines) > mean(y12$min_lines))
+  expect_true(mean(y$max_lines) > mean(y12$max_lines))
+})

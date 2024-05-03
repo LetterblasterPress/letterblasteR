@@ -113,3 +113,51 @@ plot_layouts <- function(x) {
     ) +
     labs(caption = sprintf("%s layouts", format(nrow(x), big.mark = ",")))
 }
+
+#' Scale generic layouts
+#'
+#' Resize generic layouts to fit a desired textblock width, and filter out
+#' layouts that are too large for the specified stock paper.
+#'
+#' @param target_text_width desired textblock width in inches
+#' @param fontsize base font size for document, used to estimate the number of
+#'   lines of text the textblock can accommodate
+#' @param max_page_height,max_page_width maximum page dimensions (default
+#'   assumes layout is printed on letter paper folded in half)
+#'
+#' @return Returns [layouts] plus three additional columns: `font_size`,
+#'   `min_lines`, & `max_lines`.
+#' @export
+#'
+#' @examples
+#' str(fit_layouts_to_text_width(4))
+fit_layouts_to_text_width <- function(
+    target_text_width,
+    fontsize = c("10pt", "11pt", "12pt"),
+    max_page_height = 8.5,
+    max_page_width = 5.5) {
+  font_size <- as.integer(gsub("^(\\d+)pt$", "\\1", match.arg(fontsize)))
+
+  layouts |>
+    mutate(
+      factor = target_text_width / text_width,
+      page_height = .data$factor * .data$page_height,
+      page_width = .data$factor * .data$page_width,
+      text_height = .data$factor * .data$text_height,
+      text_width = .data$factor * .data$text_width,
+      b_mar = .data$factor * .data$b_mar,
+      t_mar = .data$factor * .data$t_mar,
+      o_mar = .data$factor * .data$o_mar,
+      i_mar = .data$factor * .data$i_mar
+    ) |>
+    select(-any_of("factor")) |>
+    filter(
+      .data$page_height < max_page_height,
+      .data$page_width < max_page_width
+    ) |>
+    mutate(
+      font_size,
+      min_lines = ceiling(.data$text_height / (1.2 * font_size / 72.27)),
+      max_lines = floor(.data$text_height / (font_size / 72.27))
+    )
+}

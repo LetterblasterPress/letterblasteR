@@ -26,6 +26,9 @@ reference:
       - name_ratios
       - round_ratios
       - plot_layouts
+      - sample_text
+      - estimate_line_length
+      - fit_layouts_to_text_width
   - title: "Package datasets"
     desc: >
       The package includes a few datasets to help make page layout decisions.
