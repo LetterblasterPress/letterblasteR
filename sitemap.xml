@@ -22,6 +22,9 @@
     <loc>https://letterblasterpress.github.io/letterblasteR/index.html</loc>
   </url>
   <url>
+    <loc>https://letterblasterpress.github.io/letterblasteR/reference/degrees.html</loc>
+  </url>
+  <url>
     <loc>https://letterblasterpress.github.io/letterblasteR/reference/dev.html</loc>
   </url>
   <url>
@@ -37,13 +40,25 @@
     <loc>https://letterblasterpress.github.io/letterblasteR/reference/diff_text.html</loc>
   </url>
   <url>
+    <loc>https://letterblasterpress.github.io/letterblasteR/reference/estimate_line_length.html</loc>
+  </url>
+  <url>
+    <loc>https://letterblasterpress.github.io/letterblasteR/reference/fit_layouts_to_text_width.html</loc>
+  </url>
+  <url>
     <loc>https://letterblasterpress.github.io/letterblasteR/reference/index.html</loc>
   </url>
   <url>
     <loc>https://letterblasterpress.github.io/letterblasteR/reference/inst.html</loc>
   </url>
   <url>
+    <loc>https://letterblasterpress.github.io/letterblasteR/reference/layouts.html</loc>
+  </url>
+  <url>
     <loc>https://letterblasterpress.github.io/letterblasteR/reference/letterblasteR-package.html</loc>
+  </url>
+  <url>
+    <loc>https://letterblasterpress.github.io/letterblasteR/reference/name_ratios.html</loc>
   </url>
   <url>
     <loc>https://letterblasterpress.github.io/letterblasteR/reference/pg_download.html</loc>
@@ -53,6 +68,18 @@
   </url>
   <url>
     <loc>https://letterblasterpress.github.io/letterblasteR/reference/pg_metadata.html</loc>
+  </url>
+  <url>
+    <loc>https://letterblasterpress.github.io/letterblasteR/reference/plot_layouts.html</loc>
+  </url>
+  <url>
+    <loc>https://letterblasterpress.github.io/letterblasteR/reference/ratios.html</loc>
+  </url>
+  <url>
+    <loc>https://letterblasterpress.github.io/letterblasteR/reference/round_ratios.html</loc>
+  </url>
+  <url>
+    <loc>https://letterblasterpress.github.io/letterblasteR/reference/sample_text.html</loc>
   </url>
   <url>
     <loc>https://letterblasterpress.github.io/letterblasteR/reference/to_tidy_md.html</loc>
