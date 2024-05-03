@@ -47,8 +47,8 @@ jobs:
 
       - name: Build site
         run: |
-          cp -a vignettes-raw/. vignettes
-          rm vignettes/*.qmd
+          devtools::install()
+          Rscript -e "letterblasteR:::dev_publish_vignettes()"
           Rscript -e "pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)"
 
       - name: Deploy to GitHub pages 🚀
