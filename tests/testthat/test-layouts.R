@@ -9,8 +9,8 @@ test_that("plot_layouts() plots all layouts or a subset", {
     ) |>
     plot_layouts()
 
-  vdiffr::expect_doppelganger("Plot all layouts", plot_all)
-  vdiffr::expect_doppelganger("Plot subset of layouts", plot_some)
+  expect_snapshot(ggplot2::layer_data(plot_all))
+  expect_snapshot(ggplot2::layer_data(plot_some))
 })
 
 test_that("fit_layouts_to_text_width() does some sensible math", {

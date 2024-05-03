@@ -48,8 +48,7 @@ Suggests:
     spelling,
     stringr,
     testthat (>= 3.0.0),
-    uuid,
-    vdiffr
+    uuid
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3
