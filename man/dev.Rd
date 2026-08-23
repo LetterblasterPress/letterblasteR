@@ -14,5 +14,5 @@ Returns \code{TRUE} invisibly upon success.
 }
 \description{
 An opinionated wrapper function that calls \code{\link[usethis:use_r]{usethis::use_r()}} and
-\code{\link[usethis:use_r]{usethis::use_test()}}.
+\code{\link[usethis:use_test]{usethis::use_test()}}.
 }

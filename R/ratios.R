@@ -103,7 +103,8 @@ degrees <- function(h, w = 1) {
 #' round_ratios(c(2.9999, 3.0001), 2, target = "taller")
 #' round_ratios(c(2.9999, 3.0001), 2, target = "wider")
 round_ratios <- function(
-    h, w = 1, target = c("nearest", "taller", "wider"), tolerance = 0.01) {
+  h, w = 1, target = c("nearest", "taller", "wider"), tolerance = 0.01
+) {
   target <- match.arg(target)
   a <- degrees(h, w)
 

@@ -14,7 +14,7 @@ LaTeX: LuaLaTeX
 
 AutoAppendNewline: Yes
 StripTrailingWhitespace: Yes
-LineEndingConversion: Native
+LineEndingConversion: Posix
 
 BuildType: Package
 PackageUseDevtools: Yes
@@ -26,7 +26,7 @@ UseNativePipeOperator: Yes
 
 MarkdownWrap: Column
 MarkdownWrapAtColumn: 80
-MarkdownReferences: Section
+MarkdownReferences: Block
 MarkdownCanonical: Yes
 
 SpellingDictionary: en_US

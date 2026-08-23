@@ -15,86 +15,118 @@ export(round_ratios)
 export(sample_text)
 export(to_tidy_md)
 export(view_diff)
-importFrom(cli,ansi_html)
-importFrom(cli,ansi_html_style)
-importFrom(covr,coverage_to_list)
-importFrom(covr,file_report)
-importFrom(covr,package_coverage)
-importFrom(devtools,check)
-importFrom(devtools,document)
-importFrom(dplyr,across)
-importFrom(dplyr,any_of)
-importFrom(dplyr,arrange)
-importFrom(dplyr,coalesce)
-importFrom(dplyr,desc)
-importFrom(dplyr,distinct)
-importFrom(dplyr,filter)
-importFrom(dplyr,if_else)
-importFrom(dplyr,left_join)
-importFrom(dplyr,mutate)
-importFrom(dplyr,select)
-importFrom(dplyr,transmute)
-importFrom(forcats,fct_relabel)
-importFrom(forcats,fct_rev)
-importFrom(fs,dir_copy)
-importFrom(fs,dir_create)
-importFrom(fs,dir_exists)
-importFrom(fs,dir_ls)
-importFrom(fs,file_copy)
-importFrom(fs,file_exists)
-importFrom(fs,file_move)
-importFrom(fs,file_temp)
-importFrom(fs,path)
-importFrom(fs,path_dir)
-importFrom(fs,path_file)
-importFrom(fs,path_temp)
-importFrom(gert,git_add)
-importFrom(gert,git_commit)
-importFrom(gert,git_config_set)
-importFrom(gert,git_init)
-importFrom(ggplot2,aes)
-importFrom(ggplot2,element_blank)
-importFrom(ggplot2,element_rect)
-importFrom(ggplot2,facet_grid)
-importFrom(ggplot2,geom_rect)
-importFrom(ggplot2,ggplot)
-importFrom(ggplot2,labs)
-importFrom(ggplot2,scale_fill_manual)
-importFrom(ggplot2,theme)
+importFrom(cli,
+  ansi_html,
+  ansi_html_style
+)
+importFrom(covr,
+  coverage_to_list,
+  file_report,
+  package_coverage
+)
+importFrom(devtools,
+  check,
+  document
+)
+importFrom(dplyr,
+  across,
+  any_of,
+  arrange,
+  coalesce,
+  desc,
+  distinct,
+  filter,
+  if_else,
+  left_join,
+  mutate,
+  select,
+  transmute
+)
+importFrom(forcats,
+  fct_relabel,
+  fct_rev
+)
+importFrom(fs,
+  dir_copy,
+  dir_create,
+  dir_exists,
+  dir_ls,
+  file_copy,
+  file_exists,
+  file_move,
+  file_temp,
+  path,
+  path_dir,
+  path_file,
+  path_temp
+)
+importFrom(gert,
+  git_add,
+  git_commit,
+  git_config_set,
+  git_init
+)
+importFrom(ggplot2,
+  aes,
+  element_blank,
+  element_rect,
+  facet_grid,
+  geom_rect,
+  ggplot,
+  labs,
+  scale_fill_manual,
+  theme
+)
 importFrom(grid,unit)
-importFrom(htmltools,HTML)
-importFrom(htmltools,html_print)
-importFrom(htmltools,tagList)
-importFrom(htmltools,tags)
+importFrom(htmltools,
+  HTML,
+  html_print,
+  tagList,
+  tags
+)
 importFrom(magrittr,"%<>%")
-importFrom(methods,hasArg)
-importFrom(methods,is)
+importFrom(methods,
+  hasArg,
+  is
+)
 importFrom(pandoc,pandoc_convert)
 importFrom(pdftools,pdf_text)
 importFrom(pkgdown,build_site)
-importFrom(purrr,keep)
-importFrom(purrr,map)
-importFrom(purrr,map_chr)
-importFrom(purrr,map_dbl)
-importFrom(purrr,map_dfc)
-importFrom(purrr,map_lgl)
-importFrom(purrr,map_vec)
+importFrom(purrr,
+  keep,
+  map,
+  map_chr,
+  map_dbl,
+  map_dfc,
+  map_lgl,
+  map_vec
+)
 importFrom(rstudioapi,viewer)
-importFrom(stats,complete.cases)
-importFrom(stats,sd)
+importFrom(stats,
+  complete.cases,
+  sd
+)
 importFrom(styler,style_pkg)
 importFrom(tibble,tibble)
-importFrom(tidyr,pivot_longer)
-importFrom(tidyr,pivot_wider)
-importFrom(tidyr,separate)
-importFrom(tidyselect,ends_with)
-importFrom(tidyselect,matches)
-importFrom(usethis,use_r)
-importFrom(usethis,use_test)
-importFrom(usethis,use_tidy_description)
-importFrom(utils,capture.output)
-importFrom(utils,download.file)
-importFrom(utils,head)
-importFrom(utils,unzip)
+importFrom(tidyr,
+  pivot_longer,
+  pivot_wider,
+  separate
+)
+importFrom(tidyselect,
+  ends_with,
+  matches
+)
+importFrom(usethis,
+  use_r,
+  use_test,
+  use_tidy_description
+)
+importFrom(utils,
+  capture.output,
+  download.file,
+  head,
+  unzip
+)
 importFrom(withr,with_dir)
 importFrom(yaml,read_yaml)

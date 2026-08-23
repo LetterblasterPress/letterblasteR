@@ -1,24 +1,13 @@
-::: {#quarto-content .page-columns .page-rows-contents .page-layout-article}
-::: {#quarto-margin-sidebar .sidebar .margin-sidebar}
-::: quarto-alternate-formats
-## Other Formats
-
--   [ePub](mock.epub)
--   [Github (GFM)](mock.txt)
-:::
-:::
-
-::: {#quarto-document-content .content role="main"}
-::: {#title-block-header .quarto-title-block .default}
+::::::::::::::::::::::::::::::::::::::::::::::: {#quarto-document-content .content role="main"}
+:::::::::::::: {#title-block-header .quarto-title-block .default}
 ::: quarto-title
 # Mock Title {#mock-title .title}
 
 Mock Subtitle
 :::
 
-::: quarto-title-meta
-<div>
-
+::::::::: quarto-title-meta
+::::: {}
 ::: quarto-title-meta-heading
 Author
 :::
@@ -26,11 +15,9 @@ Author
 ::: quarto-title-meta-contents
 Mock Author
 :::
+:::::
 
-</div>
-
-<div>
-
+::::: {}
 ::: quarto-title-meta-heading
 Published
 :::
@@ -38,13 +25,11 @@ Published
 ::: quarto-title-meta-contents
 January 1, 1970
 :::
+:::::
+:::::::::
 
-</div>
-:::
-
-<div>
-
-::: abstract
+::::: {}
+:::: abstract
 ::: abstract-title
 Abstract
 :::
@@ -58,16 +43,15 @@ fall. Feel the heat of the weak dying flame.
 
 The night shift men rate extra pay. In some forin or other we need fun. The red
 paper brightened the dim stage. Take the match and strike it against your shoe.
-:::
+::::
+:::::
+::::::::::::::
 
-</div>
-:::
-
-::: {#basic-markdown .section .level1}
+:::::::::::::::::::::::: {#basic-markdown .section .level1}
 # Basic Markdown
 
-::: {#headings-bf .section .level2}
-## Headings B--F {#headings-bf .anchored anchor-id="headings-bf"}
+::::::: {#headings-bf .section .level2}
+## Headings B--F {.anchored anchor-id="headings-bf"}
 
 A thin book fits in the side pocket. Greet the new guests and leave quickly. The
 pirates seized the crew of the lost ship. The show was a flop from the very
@@ -81,16 +65,16 @@ white backs. No cement will hold hard wood. Mud was spattered on the front of
 his white shirt. A tame squirrel makes a nice pet. She danced like a swan, tall
 and graceful.
 
-::: {#heading-c-authentic-lomo .section .level3}
-### Heading C: Authentic lomo {#heading-c-authentic-lomo .anchored anchor-id="heading-c-authentic-lomo"}
+:::::: {#heading-c-authentic-lomo .section .level3}
+### Heading C: Authentic lomo {.anchored anchor-id="heading-c-authentic-lomo"}
 
 The ramp led up to the wide highway. Bail the boat, to stop it from sinking. The
 key you designed will fit the lock. The map had an X that meant nothing. There
 the flood mark is ten inches. The square peg will settle in the round hole. We
 need an end of all such matter. The young kid jumped the rusty gate.
 
-::: {#heading-d-kale-chips .section .level4}
-#### Heading D: Kale chips {#heading-d-kale-chips .anchored anchor-id="heading-d-kale-chips"}
+::::: {#heading-d-kale-chips .section .level4}
+#### Heading D: Kale chips {.anchored anchor-id="heading-d-kale-chips"}
 
 A white silk jacket goes with any shoes. The ink stain dried on the finished
 page. Many hands help get the job done. Thieves who rob friends deserve jail.
@@ -99,8 +83,8 @@ despair. Pluck the bright rose without leaves. When the frost has come it is
 time for turkey. Bathe and relax in the cool green grass. A man in a blue
 sweater sat at the desk.
 
-::: {#heading-e-art-party .section .level5}
-##### Heading E: Art party {#heading-e-art-party .anchored anchor-id="heading-e-art-party"}
+:::: {#heading-e-art-party .section .level5}
+##### Heading E: Art party {.anchored anchor-id="heading-e-art-party"}
 
 He used the lathe to make brass objects. Kick the ball straight and follow
 through. The key you designed will fit the lock. The music played on while they
@@ -110,19 +94,19 @@ A whiff of it will cure the most stubborn cold. Dip the pail once and let it
 settle. The big red apple fell to the ground.
 
 ::: {#heading-f-cray-direct-trade .section .level6}
-###### Heading F: Cray direct trade {#heading-f-cray-direct-trade .anchored anchor-id="heading-f-cray-direct-trade"}
+###### Heading F: Cray direct trade {.anchored anchor-id="heading-f-cray-direct-trade"}
 
 The crunch of feet in the snow was the only sound. A king ruled the state in the
 early days. The fight will end in just six minutes. Loop the braid to the left
 and then over. What joy there is in living.
 :::
-:::
-:::
-:::
-:::
+::::
+:::::
+::::::
+:::::::
 
 ::: {#inline-formatting-and-links .section .level2}
-## Inline formatting and links {#inline-formatting-and-links .anchored anchor-id="inline-formatting-and-links"}
+## Inline formatting and links {.anchored anchor-id="inline-formatting-and-links"}
 
   ------------------- ------------------------------ -----------------------------
   Pandoc ligatures       `--, ---, ..., 'x', "x"`       --, ---, ..., 'x', "x"
@@ -149,13 +133,13 @@ and then over. What joy there is in living.
 :::
 
 ::: {#math .section .level2}
-## Math {#math .anchored anchor-id="math"}
+## Math {.anchored anchor-id="math"}
 
 [\\\[ E = mc\^{2} \\\]]{.math .display}
 :::
 
 ::: {#block-quotations .section .level2}
-## Block quotations {#block-quotations .anchored anchor-id="block-quotations"}
+## Block quotations {.anchored anchor-id="block-quotations"}
 
 > The fur of cats goes by many names. The pencil was cut to be sharp at both
 > ends. The wagon moved on well oiled wheels. The store was jammed before the
@@ -167,7 +151,7 @@ and then over. What joy there is in living.
 :::
 
 ::: {#line-blocks .section .level2}
-## Line blocks {#line-blocks .anchored anchor-id="line-blocks"}
+## Line blocks {.anchored anchor-id="line-blocks"}
 
 The limerick packs laughs anatomical\
 Into space that is quite economical.\
@@ -176,48 +160,48 @@ Into space that is quite economical.\
 And the clean ones so seldom are comical.
 :::
 
-::: {#lists .section .level2}
-## Lists {#lists .anchored anchor-id="lists"}
+:::::::::: {#lists .section .level2}
+## Lists {.anchored anchor-id="lists"}
 
-::: {#unordered-lists .section .level3}
-### Unordered lists {#unordered-lists .anchored anchor-id="unordered-lists"}
+::::: {#unordered-lists .section .level3}
+### Unordered lists {.anchored anchor-id="unordered-lists"}
 
 ::: {#compact .section .level4}
-#### Compact {#compact .anchored anchor-id="compact"}
+#### Compact {.anchored anchor-id="compact"}
 
--   One
--   Two
--   Three
+- One
+- Two
+- Three
 :::
 
 ::: {#loose .section .level4}
-#### Loose {#loose .anchored anchor-id="loose"}
+#### Loose {.anchored anchor-id="loose"}
 
--   Sever the twine with a quick snip of the knife. That guy is the writer of a
-    few banned books. The youth drove with zest, but little skill. The hostess
-    taught the new maid to serve. The odor of spring makes young hearts jump.
+- Sever the twine with a quick snip of the knife. That guy is the writer of a
+  few banned books. The youth drove with zest, but little skill. The hostess
+  taught the new maid to serve. The odor of spring makes young hearts jump.
 
--   The hog crawled under the high fence. Take the winding path to reach the
-    lake. The pipe began to rust while new. The desk was firm on the shaky
-    floor. Roads are paved with sticky tar. Move the vat over the hot fire. The
-    box was thrown beside the parked truck. The bunch of grapes was pressed into
-    wine. The pencils have all been used. It caught its hind paw in a rusty
-    trap. They felt gay when the ship arrived in port.
+- The hog crawled under the high fence. Take the winding path to reach the lake.
+  The pipe began to rust while new. The desk was firm on the shaky floor. Roads
+  are paved with sticky tar. Move the vat over the hot fire. The box was thrown
+  beside the parked truck. The bunch of grapes was pressed into wine. The
+  pencils have all been used. It caught its hind paw in a rusty trap. They felt
+  gay when the ship arrived in port.
 
--   There are many ways to do these things. Peep under the tent and see the
-    clowns. A brown leather bag hung from its strap. Feel the heat of the weak
-    dying flame. Code is used when secrets are sent. Down that road is the way
-    to the grain farmer. The rarest spice comes from the far East. The logs fell
-    and tumbled into the clear stream. The key you designed will fit the lock.
-    Two blue fish swam in the tank.
+- There are many ways to do these things. Peep under the tent and see the
+  clowns. A brown leather bag hung from its strap. Feel the heat of the weak
+  dying flame. Code is used when secrets are sent. Down that road is the way to
+  the grain farmer. The rarest spice comes from the far East. The logs fell and
+  tumbled into the clear stream. The key you designed will fit the lock. Two
+  blue fish swam in the tank.
 :::
-:::
+:::::
 
-::: {#ordered-lists .section .level3}
-### Ordered lists {#ordered-lists .anchored anchor-id="ordered-lists"}
+::::: {#ordered-lists .section .level3}
+### Ordered lists {.anchored anchor-id="ordered-lists"}
 
 ::: {#compact-1 .section .level4}
-#### Compact {#compact-1 .anchored anchor-id="compact-1"}
+#### Compact {.anchored anchor-id="compact-1"}
 
 1.  One
 2.  Two
@@ -225,7 +209,7 @@ And the clean ones so seldom are comical.
 :::
 
 ::: {#loose-1 .section .level4}
-#### Loose {#loose-1 .anchored anchor-id="loose-1"}
+#### Loose {.anchored anchor-id="loose-1"}
 
 1.  This will lead the world to more sound and fury Glass will clink when struck
     by metal. The wall phone rang loud and often. The best method is to fix it
@@ -245,10 +229,10 @@ And the clean ones so seldom are comical.
     onto the lawn. The sink is the thing in which we pile dishes. The first part
     of the plan needs changing. A chink in the wall allowed a draft to blow.
 :::
-:::
+:::::
 
 ::: {#definition-lists .section .level3}
-### Definition lists {#definition-lists .anchored anchor-id="definition-lists"}
+### Definition lists {.anchored anchor-id="definition-lists"}
 
 Gentrify
 
@@ -264,36 +248,32 @@ Sriracha
 :   Ethnic letterpress cred, Neutra distillery fanny pack kale chips forage
     leggings 8-bit 90's Thundercats.
 :::
-:::
+::::::::::
 
 ::: {#footnotes .section .level2}
-## Footnotes {#footnotes .anchored anchor-id="footnotes"}
+## Footnotes {.anchored anchor-id="footnotes"}
 
-For[^1^](#fn1){#fnref1 .footnote-ref role="doc-noteref"} sale[^2^](#fn2){#fnref2
-.footnote-ref role="doc-noteref"}: baby[^3^](#fn3){#fnref3 .footnote-ref
-role="doc-noteref"} shoes[^4^](#fn4){#fnref4 .footnote-ref role="doc-noteref"},
-never[^5^](#fn5){#fnref5 .footnote-ref role="doc-noteref"}
-worn[^6^](#fn6){#fnref6 .footnote-ref role="doc-noteref"}.
+For[^1] sale[^2]: baby[^3] shoes[^4], never[^5] worn[^6].
 :::
 
 ::: {#horizontal-rules .section .level2}
-## Horizontal rules {#horizontal-rules .anchored anchor-id="horizontal-rules"}
+## Horizontal rules {.anchored anchor-id="horizontal-rules"}
 
 --------------------------------------------------------------------------------
 :::
 
-::: {#page-break .section .level2}
-## Page break {#page-break .anchored anchor-id="page-break"}
+:::: {#page-break .section .level2}
+## Page break {.anchored anchor-id="page-break"}
 
 ::: {style="page-break-after: always;"}
 :::
-:::
-:::
+::::
+::::::::::::::::::::::::
 
-::: {#tables .section .level1}
+::::: {#tables .section .level1}
 # Tables
 
-::: cell
+:::: cell
 ::: cell-output-display
     Sepal.Length   Sepal.Width   Petal.Length   Petal.Width Species
   -------------- ------------- -------------- ------------- ---------
@@ -306,10 +286,10 @@ worn[^6^](#fn6){#fnref6 .footnote-ref role="doc-noteref"}.
 
 ...check for tabular numbers too!
 :::
-:::
-:::
+::::
+:::::
 
-::: {#figures .section .level1}
+:::: {#figures .section .level1}
 # Figures
 
 ::: {#fig-charts-r .cell .quarto-layout-panel}
@@ -342,52 +322,39 @@ class="img-fluid figure-img" data-ref-parent="fig-charts-r" width="672" /></p>
 
 See the [Quarto docs](https://quarto.org/docs/authoring/figures.html) for
 fancier examples including advanced figure arrangement.
-:::
+::::
 
-::: {#divs .section .level1}
+::::: {#divs .section .level1}
 # Divs
 
-::: {#custom-classes .section .level2}
-## Custom classes {#custom-classes .anchored anchor-id="custom-classes"}
+:::: {#custom-classes .section .level2}
+## Custom classes {.anchored anchor-id="custom-classes"}
 
 ::: border
 This content is styled with the `.border` class.
 :::
-:::
-:::
+::::
+:::::
 
-::: {#quarto-appendix .default}
-::: {#footnotes .section .footnotes .footnotes-end-of-document role="doc-endnotes"}
+:::: {#quarto-appendix .default}
+::: {#footnotes .footnotes .footnotes-end-of-document role="doc-endnotes"}
 ## Footnotes {#footnotes-1 .anchored .quarto-appendix-heading}
-
-1.  ::: {#fn1}
-    Kevin Bacon[↩︎](#fnref1){.footnote-back role="doc-backlink"}
-    :::
-
-2.  ::: {#fn2}
-    Lori Singer[↩︎](#fnref2){.footnote-back role="doc-backlink"}
-    :::
-
-3.  ::: {#fn3}
-    John Lithgow[↩︎](#fnref3){.footnote-back role="doc-backlink"}
-    :::
-
-4.  ::: {#fn4}
-    Dianne Wiest[↩︎](#fnref4){.footnote-back role="doc-backlink"}
-    :::
-
-5.  ::: {#fn5}
-    Chris Penn[↩︎](#fnref5){.footnote-back role="doc-backlink"}
-    :::
-
-6.  ::: {#fn6}
-    Loose, footloose kick off your Sunday shoes. Please, Louise pull me off a my
-    knees. Jack, get back c'mon before we crack. Lose your blues everybody cut
-    footloose. Oowhee, Marie shake it, shake it for me. Whoa, Milo c'mon, c'mon
-    let's go. Lose your blues everybody cut footloose. Cut footloose. Cut
-    footloose. Cut footloose.[↩︎](#fnref6){.footnote-back role="doc-backlink"}
-    :::
 :::
-:::
-:::
-:::
+::::
+:::::::::::::::::::::::::::::::::::::::::::::::
+
+[^1]: Kevin Bacon
+
+[^2]: Lori Singer
+
+[^3]: John Lithgow
+
+[^4]: Dianne Wiest
+
+[^5]: Chris Penn
+
+[^6]: Loose, footloose kick off your Sunday shoes. Please, Louise pull me off a
+    my knees. Jack, get back c'mon before we crack. Lose your blues everybody
+    cut footloose. Oowhee, Marie shake it, shake it for me. Whoa, Milo c'mon,
+    c'mon let's go. Lose your blues everybody cut footloose. Cut footloose. Cut
+    footloose. Cut footloose.

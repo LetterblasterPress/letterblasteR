@@ -77,9 +77,7 @@ and then over. What joy there is in living.
 
 ## Math
 
-$$
-E = mc^{2}
-$$
+$$E = mc^{2}$$
 
 ## Block quotations
 
@@ -105,29 +103,29 @@ And the clean ones so seldom are comical.
 
 #### Compact
 
--   One
--   Two
--   Three
+- One
+- Two
+- Three
 
 #### Loose
 
--   Sever the twine with a quick snip of the knife. That guy is the writer of a
-    few banned books. The youth drove with zest, but little skill. The hostess
-    taught the new maid to serve. The odor of spring makes young hearts jump.
+- Sever the twine with a quick snip of the knife. That guy is the writer of a
+  few banned books. The youth drove with zest, but little skill. The hostess
+  taught the new maid to serve. The odor of spring makes young hearts jump.
 
--   The hog crawled under the high fence. Take the winding path to reach the
-    lake. The pipe began to rust while new. The desk was firm on the shaky
-    floor. Roads are paved with sticky tar. Move the vat over the hot fire. The
-    box was thrown beside the parked truck. The bunch of grapes was pressed into
-    wine. The pencils have all been used. It caught its hind paw in a rusty
-    trap. They felt gay when the ship arrived in port.
+- The hog crawled under the high fence. Take the winding path to reach the lake.
+  The pipe began to rust while new. The desk was firm on the shaky floor. Roads
+  are paved with sticky tar. Move the vat over the hot fire. The box was thrown
+  beside the parked truck. The bunch of grapes was pressed into wine. The
+  pencils have all been used. It caught its hind paw in a rusty trap. They felt
+  gay when the ship arrived in port.
 
--   There are many ways to do these things. Peep under the tent and see the
-    clowns. A brown leather bag hung from its strap. Feel the heat of the weak
-    dying flame. Code is used when secrets are sent. Down that road is the way
-    to the grain farmer. The rarest spice comes from the far East. The logs fell
-    and tumbled into the clear stream. The key you designed will fit the lock.
-    Two blue fish swam in the tank.
+- There are many ways to do these things. Peep under the tent and see the
+  clowns. A brown leather bag hung from its strap. Feel the heat of the weak
+  dying flame. Code is used when secrets are sent. Down that road is the way to
+  the grain farmer. The rarest spice comes from the far East. The logs fell and
+  tumbled into the clear stream. The key you designed will fit the lock. Two
+  blue fish swam in the tank.
 
 ### Ordered lists
 

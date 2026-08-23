@@ -16,6 +16,9 @@ If \code{wrap} is specified, text is wrapped exactly at that column, disregardin
 language. Lines are rearranged at random after filtering out lines with
 leading or trailing space.}
 }
+\value{
+Returns a character vector of sample text with length equal to \code{n}.
+}
 \description{
 Generate a sample of "Harvard sentences", wrapping to an exact column width
 if desired.
@@ -25,5 +28,5 @@ sample_text(3)
 sample_text(3, wrap = 42)
 }
 \seealso{
-\link[stringr:stringr-data]{stringr::sentences}
+\link[stringr:sentences]{stringr::sentences}
 }

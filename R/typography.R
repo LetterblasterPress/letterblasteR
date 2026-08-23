@@ -11,7 +11,8 @@
 #' language. Lines are rearranged at random after filtering out lines with
 #' leading or trailing space.
 #'
-#' @return
+#' @return Returns a character vector of sample text with length equal to `n`.
+#'
 #' @export
 #'
 #' @seealso [stringr::sentences]
@@ -62,9 +63,10 @@ sample_text <- function(n, wrap = NULL) {
 #'   ("sd") of desired text width
 #' @export
 estimate_line_length <- function(
-    font,
-    fontsize = c("10pt", "11pt", "12pt"),
-    wrap = 66) {
+  font,
+  fontsize = c("10pt", "11pt", "12pt"),
+  wrap = 66
+) {
   template <- paste(collapse = "\n", c(
     "\\documentclass[%s]{article}",
     "\\usepackage{fontspec}",

@@ -37,10 +37,10 @@ sequence:
 \itemize{
 \item \code{\link[=dev_lint]{dev_lint()}} tidies source code with \code{\link[styler:style_pkg]{styler::style_pkg()}}.
 \item \code{\link[=dev_document]{dev_document()}} updates package documentation and vignettes with calls
-to \code{\link[devtools:document]{devtools::document()}} and \code{\link[usethis:tidyverse]{usethis::use_tidy_description()}}.
+to \code{\link[devtools:document]{devtools::document()}} and \code{\link[usethis:use_tidy_description]{usethis::use_tidy_description()}}.
 \item \code{\link[=dev_spell_check]{dev_spell_check()}} checks spelling of package documentation and vignettes
 with calls to \code{\link[spelling:spell_check_package]{spelling::spell_check_package()}} and
-\code{\link[spelling:wordlist]{spelling::update_wordlist()}}.
+\code{\link[spelling:update_wordlist]{spelling::update_wordlist()}}.
 \item \code{\link[=dev_build_site]{dev_build_site()}} builds the documentation site with calls to
 \code{\link[=dev_publish_vignettes]{dev_publish_vignettes()}} and \code{\link[pkgdown:build_site]{pkgdown::build_site()}}, then loads a
 preview in the RStudio Viewer pane.

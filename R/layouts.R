@@ -132,10 +132,11 @@ plot_layouts <- function(x) {
 #' @examples
 #' str(fit_layouts_to_text_width(4))
 fit_layouts_to_text_width <- function(
-    target_text_width,
-    fontsize = c("10pt", "11pt", "12pt"),
-    max_page_height = 8.5,
-    max_page_width = 5.5) {
+  target_text_width,
+  fontsize = c("10pt", "11pt", "12pt"),
+  max_page_height = 8.5,
+  max_page_width = 5.5
+) {
   font_size <- as.integer(gsub("^(\\d+)pt$", "\\1", match.arg(fontsize)))
 
   layouts |>
@@ -152,8 +153,8 @@ fit_layouts_to_text_width <- function(
     ) |>
     select(-any_of("factor")) |>
     filter(
-      .data$page_height < max_page_height,
-      .data$page_width < max_page_width
+      .data$page_height <= max_page_height,
+      .data$page_width <= max_page_width
     ) |>
     mutate(
       font_size,
